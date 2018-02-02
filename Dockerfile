@@ -14,6 +14,6 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-co
     && chmod +x /usr/local/bin/docker-compose
 
 # Install composer.
-RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/download/1.5.2/composer.phar \
-    && echo "61dfd2f9262a0a2469e0c1864ab1cce6d3e63f9053faf883cd08307413d92119010638bfbee7c90c9b6977e284814bcb7bfdc01dd9cb9125ac947a2968c791bc  /usr/local/bin/composer" | sha512sum \
+RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/download/1.6.3/composer.phar \
+    && echo "52cb7bbbaee720471e3b34c8ae6db53a38f0b759c06078a80080db739e4dcab6  /usr/local/bin/composer" | sha256sum \
     && chmod +x /usr/local/bin/composer
