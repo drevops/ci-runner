@@ -29,3 +29,4 @@ RUN . $HOME/.nvm/nvm.sh \
 	&& nvm install $SHIPPABLE_NODE_VERSION \
 	&& nvm alias default $SHIPPABLE_NODE_VERSION \
 	&& nvm use default
+ENV PATH $NVM_DIR/versions/node/$SHIPPABLE_NODE_VERSION/bin:$PATH
