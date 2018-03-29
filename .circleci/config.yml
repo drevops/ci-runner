@@ -25,3 +25,7 @@ jobs:
       - run:
           name: Start container
           command: dgoss run -i integratedexperts/circleci2-builder:lastest
+      - run:
+          name: Build on Dockerhub
+          command: |
+            curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "https://registry.hub.docker.com/u/integratedexperts/circleci2-builder/trigger/$DOCKERHUB_TOKEN/"
