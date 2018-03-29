@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: php:7.1-cli
+        environment:
+          GOSS_FILES_STRATEGY: cp
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install Docker
+          command: |
+            curl -L -o /tmp/docker-17.03.0-ce.tgz https://get.docker.com/builds/Linux/x86_64/docker-17.03.0-ce.tgz \
+            && tar -xz -C /tmp -f /tmp/docker-17.03.0-ce.tgz \
+            && mv /tmp/docker/* /usr/bin
+      - run:
+          name: Install goss
+          command: curl -fsSL https://goss.rocks/install | sh
+      - run:
+          name: Build container.
+          command: docker build -t integratedexperts/circleci2-builder:lastest .
+      - run:
+          name: Start container
+          command: dgoss run -i integratedexperts/circleci2-builder:lastest
+      - run:
+          name: Build on Dockerhub
+          command: |
+            curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "https://registry.hub.docker.com/u/integratedexperts/circleci2-builder/trigger/$DOCKERHUB_TOKEN/"

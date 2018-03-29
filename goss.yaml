@@ -1,0 +1,48 @@
+command:
+# Docker compose.
+  which docker-compose:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/docker-compose
+    stderr: []
+    timeout: 10000
+
+# Composer and packages.
+  which composer:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/composer
+    stderr: []
+    timeout: 10000
+  composer global info:
+    exit-status: 0
+    stdout:
+    - /.*composer parallel install plugin/
+    stderr: []
+    timeout: 10000
+
+# Node.
+  which node:
+    exit-status: 0
+    stdout:
+    - /root/.nvm/versions/node/v8.9.1/bin/node
+    stderr: []
+    timeout: 10000
+  node --version:
+    exit-status: 0
+    stdout:
+    - v8.9.1
+    stderr: []
+    timeout: 10000
+  which npm:
+    exit-status: 0
+    stdout:
+    - /root/.nvm/versions/node/v8.9.1/bin/npm
+    stderr: []
+    timeout: 10000
+  npm --version:
+    exit-status: 0
+    stdout:
+    - 5.5.1
+    stderr: []
+    timeout: 10000
