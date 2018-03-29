@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+        environment:
+          GOSS_FILES_STRATEGY: cp
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install goss
+          command: curl -fsSL https://goss.rocks/install | sh
+      - run:
+          name: Install goss
+          command: curl -fsSL https://goss.rocks/install | sh
+      - run:
+          name: Build container.
+          command: docker build -t integratedexperts/circleci2-builder:lastest .
+      - run:
+          name: Test specification
+          command: goss run integratedexperts/circleci2-builder:lastest

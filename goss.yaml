@@ -1,0 +1,5 @@
+package:
+  composer:
+    installed: true
+  docker-compose:
+    installed: true
