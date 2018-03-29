@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: php:7.1-cli
         environment:
           GOSS_FILES_STRATEGY: cp
     working_directory: ~/repo
@@ -11,8 +11,11 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: Install goss
-          command: curl -fsSL https://goss.rocks/install | sh
+          name: Install Docker
+          command: |
+            curl -L -o /tmp/docker-17.03.0-ce.tgz https://get.docker.com/builds/Linux/x86_64/docker-17.03.0-ce.tgz \
+            && tar -xz -C /tmp -f /tmp/docker-17.03.0-ce.tgz \
+            && mv /tmp/docker/* /usr/bin
       - run:
           name: Install goss
           command: curl -fsSL https://goss.rocks/install | sh
@@ -20,5 +23,5 @@ jobs:
           name: Build container.
           command: docker build -t integratedexperts/circleci2-builder:lastest .
       - run:
-          name: Test specification
-          command: goss run integratedexperts/circleci2-builder:lastest
+          name: Start container
+          command: dgoss run -i integratedexperts/circleci2-builder:lastest
