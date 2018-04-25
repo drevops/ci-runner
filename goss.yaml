@@ -3,37 +3,37 @@ command:
   which git:
     exit-status: 0
     stdout:
-    - /usr/local/bin/git
+    - /usr/bin/git
     stderr: []
     timeout: 10000
   which lynx:
     exit-status: 0
     stdout:
-    - /usr/local/bin/lynx
+    - /usr/bin/lynx
     stderr: []
     timeout: 10000
   which curl:
     exit-status: 0
     stdout:
-    - /usr/local/bin/curl
+    - /usr/bin/curl
     stderr: []
     timeout: 10000
   which vim:
     exit-status: 0
     stdout:
-    - /usr/local/bin/vim
+    - /usr/bin/vim
     stderr: []
     timeout: 10000
   which zip:
     exit-status: 0
     stdout:
-    - /usr/local/bin/zip
+    - /usr/bin/zip
     stderr: []
     timeout: 10000
   which unzip:
     exit-status: 0
     stdout:
-    - /usr/local/bin/unzip
+    - /usr/bin/unzip
     stderr: []
     timeout: 10000
 
