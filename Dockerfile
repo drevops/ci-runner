@@ -2,7 +2,7 @@ FROM php:7.1-cli
 
 # Install git and ssh.
 RUN apt-get update -qq \
-    && apt-get install -y git ssh zip unzip
+    && apt-get install -y git ssh zip unzip vim lynx curl
 
 # Install docker.
 RUN curl -L -o /tmp/docker-17.03.0-ce.tgz https://get.docker.com/builds/Linux/x86_64/docker-17.03.0-ce.tgz \
