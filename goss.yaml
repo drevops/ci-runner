@@ -1,4 +1,42 @@
 command:
+# Tools.
+  which git:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/git
+    stderr: []
+    timeout: 10000
+  which lynx:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/lynx
+    stderr: []
+    timeout: 10000
+  which curl:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/curl
+    stderr: []
+    timeout: 10000
+  which vim:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/vim
+    stderr: []
+    timeout: 10000
+  which zip:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/zip
+    stderr: []
+    timeout: 10000
+  which unzip:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/unzip
+    stderr: []
+    timeout: 10000
+
 # Docker compose.
   which docker-compose:
     exit-status: 0
