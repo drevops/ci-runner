@@ -84,3 +84,11 @@ command:
     - 5.5.1
     stderr: []
     timeout: 10000
+
+# Ahoy.
+  which ahoy:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/ahoy
+    stderr: []
+    timeout: 10000

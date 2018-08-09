@@ -31,3 +31,7 @@ RUN . $HOME/.nvm/nvm.sh \
 	&& nvm alias default $SHIPPABLE_NODE_VERSION \
 	&& nvm use default
 ENV PATH $NVM_DIR/versions/node/$SHIPPABLE_NODE_VERSION/bin:$PATH
+
+# Install Ahoy.
+RUN curl -L https://github.com/ahoy-cli/ahoy/releases/download/2.0.0/ahoy-bin-`uname -s`-amd64 -o /usr/local/bin/ahoy \
+  && chmod +x /usr/local/bin/ahoy
