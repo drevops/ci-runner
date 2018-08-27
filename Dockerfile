@@ -5,12 +5,12 @@ RUN apt-get update -qq \
     && apt-get install -y git ssh zip unzip vim lynx curl
 
 # Install docker.
-RUN curl -L -o /tmp/docker-17.03.0-ce.tgz https://get.docker.com/builds/Linux/x86_64/docker-17.03.0-ce.tgz \
-    && tar -xz -C /tmp -f /tmp/docker-17.03.0-ce.tgz \
+RUN curl -L -o /tmp/docker-18.06.1-ce.tgz https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz \
+    && tar -xz -C /tmp -f /tmp/docker-18.06.1-ce.tgz \
     && mv /tmp/docker/* /usr/bin
 
 # Install docker-compose.
-RUN curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
+RUN curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
 
 # Install composer.
