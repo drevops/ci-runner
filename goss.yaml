@@ -36,6 +36,12 @@ command:
     - /usr/bin/unzip
     stderr: []
     timeout: 10000
+  which goss:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/goss
+    stderr: []
+    timeout: 10000
 
 # Docker compose.
   which docker-compose:
