@@ -28,7 +28,3 @@ jobs:
           name: Build on Dockerhub
           command: |
             curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "https://registry.hub.docker.com/u/integratedexperts/ci-builder/trigger/$DOCKERHUB_TOKEN/"
-      - run:
-          name: Legacy build on Dockerhub
-          command: |
-            curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "https://registry.hub.docker.com/u/integratedexperts/circleci2-builder/trigger/$DOCKERHUB_TOKEN_LEGACY/"
