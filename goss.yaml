@@ -65,6 +65,14 @@ command:
     stderr: []
     timeout: 10000
 
+  # Install a global package and assert that it exists.
+  composer global require drush/drush:^8 && drush -v:
+    exit-status: 0
+    stdout:
+    - 8.
+    stderr: []
+    timeout: 10000
+
 # Node.
   which node:
     exit-status: 0
