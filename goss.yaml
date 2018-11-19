@@ -66,7 +66,7 @@ command:
     timeout: 10000
 
   # Install a global package and assert that it exists.
-  composer global require drush/drush:^8 && drush -v:
+  composer global require drush/drush:^8 && drush --version:
     exit-status: 0
     stdout:
     - 8.
