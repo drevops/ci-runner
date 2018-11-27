@@ -99,10 +99,16 @@ command:
     stderr: []
     timeout: 10000
 
-# Ahoy.
   which ahoy:
     exit-status: 0
     stdout:
     - /usr/local/bin/ahoy
+    stderr: []
+    timeout: 10000
+
+  which aspell:
+    exit-status: 0
+    stdout:
+    - /usr/bin/aspell
     stderr: []
     timeout: 10000
