@@ -112,3 +112,10 @@ command:
     - /usr/bin/aspell
     stderr: []
     timeout: 10000
+
+  which jq:
+    exit-status: 0
+    stdout:
+    - /usr/bin/jq
+    stderr: []
+    timeout: 10000
