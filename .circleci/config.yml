@@ -20,10 +20,10 @@ jobs:
           command: curl -fsSL https://goss.rocks/install | sh
       - run:
           name: Build container.
-          command: docker build -t integratedexperts/circleci2-builder:lastest .
+          command: docker build -t integratedexperts/circleci2-builder:latest .
       - run:
           name: Start container
-          command: dgoss run -i integratedexperts/circleci2-builder:lastest
+          command: dgoss run -i integratedexperts/circleci2-builder:latest
       - run:
           name: Build on Dockerhub
           command: |

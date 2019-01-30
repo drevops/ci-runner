@@ -119,3 +119,10 @@ command:
     - /usr/bin/jq
     stderr: []
     timeout: 10000
+
+  which shellcheck:
+    exit-status: 0
+    stdout:
+      - /usr/bin/shellcheck
+    stderr: []
+    timeout: 10000
