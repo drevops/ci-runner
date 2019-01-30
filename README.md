@@ -18,3 +18,5 @@ It contains several tools required to run docker-based builds:
 - NVM and NodeJS
 - Goss - environment testing
 - Ahoy - workflow helper
+- Aspell - English language spellcheker
+- Shellcheck - a shell script static analysis tool
