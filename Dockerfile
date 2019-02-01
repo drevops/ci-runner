@@ -1,4 +1,5 @@
 FROM php:7.1-cli
+LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 
 # Install git and ssh.
 RUN apt-get update -qq \
