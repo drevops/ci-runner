@@ -126,3 +126,17 @@ command:
       - /usr/bin/shellcheck
     stderr: []
     timeout: 10000
+
+  which bats:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/bats
+    stderr: []
+    timeout: 10000
+
+  bats -v:
+    exit-status: 0
+    stdout:
+      - Bats 1.1.0
+    stderr: []
+    timeout: 10000

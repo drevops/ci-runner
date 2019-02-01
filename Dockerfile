@@ -35,6 +35,13 @@ ENV PATH $NVM_DIR/versions/node/$SHIPPABLE_NODE_VERSION/bin:$PATH
 ENV GOSS_FILES_STRATEGY=cp
 RUN curl -fsSL https://goss.rocks/install | sh
 
+# Install Bats.
+RUN curl -L -o /tmp/bats.tar.gz https://github.com/bats-core/bats-core/archive/v1.1.0.tar.gz \
+    && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
+    && cd /tmp/bats \
+    && ./install.sh /usr/local \
+    && rm -Rf /tmp/bats
+
 # Install Ahoy.
 RUN curl -L https://github.com/ahoy-cli/ahoy/releases/download/2.0.0/ahoy-bin-`uname -s`-amd64 -o /usr/local/bin/ahoy \
   && chmod +x /usr/local/bin/ahoy
