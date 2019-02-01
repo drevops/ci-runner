@@ -20,3 +20,4 @@ It contains several tools required to run docker-based builds:
 - Ahoy - workflow helper
 - Aspell - English language spellcheker
 - Shellcheck - a shell script static analysis tool
+- Bats - Bash Automated Testing System (2018)
