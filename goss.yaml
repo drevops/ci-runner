@@ -126,6 +126,12 @@ command:
       - /usr/bin/shellcheck
     stderr: []
     timeout: 10000
+  shellcheck --version:
+    exit-status: 0
+    stdout:
+      - 0.6.0
+    stderr: []
+    timeout: 10000
 
   which bats:
     exit-status: 0

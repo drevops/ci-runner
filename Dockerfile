@@ -5,6 +5,13 @@ LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 RUN apt-get update -qq \
     && apt-get install -y git ssh zip unzip vim lynx curl aspell-en jq shellcheck
 
+# Install shellcheck
+ENV SHELLCHECK_VERSION=0.6.0
+RUN curl -L -o "/tmp/shellcheck-v$SHELLCHECK_VERSION.tar.xz" "https://storage.googleapis.com/shellcheck/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" \
+  && tar --xz -xvf "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" \
+  && mv "shellcheck-v${SHELLCHECK_VERSION}/shellcheck" /usr/bin/ \
+  && shellcheck --version
+
 # Install docker && docker compose.
 RUN curl -L -o /tmp/docker-18.06.1-ce.tgz https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz \
     && tar -xz -C /tmp -f /tmp/docker-18.06.1-ce.tgz \
