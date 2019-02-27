@@ -72,3 +72,8 @@ RUN curl -L -o /tmp/bats.tar.gz https://github.com/bats-core/bats-core/archive/v
 RUN curl -L https://github.com/ahoy-cli/ahoy/releases/download/2.0.0/ahoy-bin-`uname -s`-amd64 -o /usr/local/bin/ahoy \
   && chmod +x /usr/local/bin/ahoy \
   && ahoy --version
+
+# Install a stub for pygmy.
+# Some frameworks may require presence of pygmy to run, but pygmy is not required in CI container.
+RUN touch /usr/local/bin/pygmy \
+ && chmod +x /usr/local/bin/pygmy

@@ -146,3 +146,11 @@ command:
       - Bats 1.1.0
     stderr: []
     timeout: 10000
+
+  which pygmy:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/pygmy
+    stderr: []
+    timeout: 10000
+
