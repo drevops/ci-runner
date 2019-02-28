@@ -38,7 +38,8 @@ RUN curl -L -o /usr/local/bin/composer https://getcomposer.org/download/1.6.3/co
     && chmod +x /usr/local/bin/composer \
     && composer --version \
     # Install composer plugin to speed up packages downloading.
-    && composer global require hirak/prestissimo
+    && composer global require hirak/prestissimo \
+    && composer clear-cache
 ENV PATH /root/.composer/vendor/bin:$PATH
 
 # Install NVM and NodeJS.
