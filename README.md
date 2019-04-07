@@ -7,6 +7,7 @@ Docker image for CI Builder container
 
 It contains several tools required to run docker-based builds:
 - git
+- lsof
 - lynx
 - curl
 - vim
