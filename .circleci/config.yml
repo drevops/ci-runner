@@ -29,29 +29,3 @@ jobs:
       - run:
           name: Show versions
           command: ./versions.sh "integratedexperts/circleci2-builder:latest"
-  deploy:
-    docker:
-      - image: php:7.2-cli
-    steps:
-      - run:
-          name: Build on Dockerhub
-          command: |
-            curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "https://registry.hub.docker.com/u/integratedexperts/ci-builder/trigger/${DOCKERHUB_TOKEN:?}/"
-
-workflows:
-  version: 2
-  main:
-    jobs:
-      - build:
-          filters:
-            tags:
-              only: /.*/
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
-              only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
