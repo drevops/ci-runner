@@ -26,6 +26,9 @@ jobs:
       - run:
           name: Start container
           command: dgoss run -i integratedexperts/circleci2-builder:latest
+      - run:
+          name: Show versions
+          command: ./versions.sh "integratedexperts/circleci2-builder:latest"
   deploy:
     docker:
       - image: php:7.2-cli
