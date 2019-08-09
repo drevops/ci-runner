@@ -1,41 +1,47 @@
 command:
-# Tools.
+
   which git:
     exit-status: 0
     stdout:
     - /usr/bin/git
     stderr: []
     timeout: 10000
+
   which lynx:
     exit-status: 0
     stdout:
     - /usr/bin/lynx
     stderr: []
     timeout: 10000
+
   which curl:
     exit-status: 0
     stdout:
     - /usr/bin/curl
     stderr: []
     timeout: 10000
+
   which vim:
     exit-status: 0
     stdout:
     - /usr/bin/vim
     stderr: []
     timeout: 10000
+
   which zip:
     exit-status: 0
     stdout:
     - /usr/bin/zip
     stderr: []
     timeout: 10000
+
   which unzip:
     exit-status: 0
     stdout:
     - /usr/bin/unzip
     stderr: []
     timeout: 10000
+
   which goss:
     exit-status: 0
     stdout:
@@ -43,7 +49,6 @@ command:
     stderr: []
     timeout: 10000
 
-# Docker compose.
   which docker:
     exit-status: 0
     stdout:
@@ -58,13 +63,13 @@ command:
     stderr: []
     timeout: 10000
 
-# Composer and packages.
   which composer:
     exit-status: 0
     stdout:
     - /usr/local/bin/composer
     stderr: []
     timeout: 10000
+
   composer global info:
     exit-status: 0
     stdout:
@@ -80,29 +85,24 @@ command:
     stderr: []
     timeout: 10000
 
-# Node.
   which node:
     exit-status: 0
     stdout:
-    - /root/.nvm/versions/node/v8.9.1/bin/node
+    - /root/.nvm/versions/node/
     stderr: []
     timeout: 10000
-  node --version:
-    exit-status: 0
-    stdout:
-    - v8.9.1
-    stderr: []
-    timeout: 10000
+
   which npm:
     exit-status: 0
     stdout:
-    - /root/.nvm/versions/node/v8.9.1/bin/npm
+    - /root/.nvm/versions/node/
     stderr: []
     timeout: 10000
+
   npm --version:
     exit-status: 0
     stdout:
-    - 5.5.1
+    - 6.4.1
     stderr: []
     timeout: 10000
 
@@ -131,12 +131,6 @@ command:
     exit-status: 0
     stdout:
       - /usr/bin/shellcheck
-    stderr: []
-    timeout: 10000
-  shellcheck --version:
-    exit-status: 0
-    stdout:
-      - 0.6.0
     stderr: []
     timeout: 10000
 
