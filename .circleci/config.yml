@@ -22,10 +22,10 @@ jobs:
           command: curl -fsSL https://goss.rocks/install | sh && goss --version
       - run:
           name: Build container.
-          command: docker build -t integratedexperts/circleci2-builder:latest .
+          command: docker build -t integratedexperts/ci-builder:latest .
       - run:
           name: Start container
-          command: dgoss run -i integratedexperts/circleci2-builder:latest
+          command: dgoss run -i integratedexperts/ci-builder:latest
       - run:
           name: Show versions
-          command: ./versions.sh "integratedexperts/circleci2-builder:latest"
+          command: ./versions.sh "integratedexperts/ci-builder:latest"
