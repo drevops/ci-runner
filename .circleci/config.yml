@@ -2,9 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: php:7.1-cli
+      - image: php:7.2-cli
         environment:
           GOSS_FILES_STRATEGY: cp
+          DOCKER_VERSION: 18.09.2
     working_directory: ~/repo
     steps:
       - checkout
@@ -12,12 +13,13 @@ jobs:
       - run:
           name: Install Docker
           command: |
-            curl -L -o /tmp/docker-17.03.0-ce.tgz https://get.docker.com/builds/Linux/x86_64/docker-17.03.0-ce.tgz \
-            && tar -xz -C /tmp -f /tmp/docker-17.03.0-ce.tgz \
-            && mv /tmp/docker/* /usr/bin
+            curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
+            && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
+            && mv /tmp/docker/* /usr/bin \
+            && docker --version
       - run:
           name: Install goss
-          command: curl -fsSL https://goss.rocks/install | sh
+          command: curl -fsSL https://goss.rocks/install | sh && goss --version
       - run:
           name: Build container.
           command: docker build -t integratedexperts/circleci2-builder:latest .
@@ -25,6 +27,31 @@ jobs:
           name: Start container
           command: dgoss run -i integratedexperts/circleci2-builder:latest
       - run:
+          name: Show versions
+          command: ./versions.sh "integratedexperts/circleci2-builder:latest"
+  deploy:
+    docker:
+      - image: php:7.2-cli
+    steps:
+      - run:
           name: Build on Dockerhub
           command: |
-            curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "https://registry.hub.docker.com/u/integratedexperts/ci-builder/trigger/$DOCKERHUB_TOKEN/"
+            curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "https://registry.hub.docker.com/u/integratedexperts/ci-builder/trigger/${DOCKERHUB_TOKEN:?}/"
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
+              only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
