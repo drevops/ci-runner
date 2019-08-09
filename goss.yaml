@@ -44,6 +44,13 @@ command:
     timeout: 10000
 
 # Docker compose.
+  which docker:
+    exit-status: 0
+    stdout:
+      - /usr/bin/docker
+    stderr: []
+    timeout: 10000
+
   which docker-compose:
     exit-status: 0
     stdout:

@@ -24,11 +24,11 @@ RUN curl -L -o "/tmp/shellcheck-v$SHELLCHECK_VERSION.tar.xz" "https://storage.go
   && shellcheck --version
 
 # Install docker && docker compose.
-RUN curl -L -o /tmp/docker-18.06.1-ce.tgz https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz \
-    && tar -xz -C /tmp -f /tmp/docker-18.06.1-ce.tgz \
+RUN curl -L -o /tmp/docker-18.09.2.tgz https://download.docker.com/linux/static/stable/x86_64/docker-18.09.2.tgz \
+    && tar -xz -C /tmp -f /tmp/docker-18.09.2.tgz \
     && mv /tmp/docker/* /usr/bin \
     && docker --version \
-    && curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
+    && curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose \
     && docker-compose --version
 
