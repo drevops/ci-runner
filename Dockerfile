@@ -17,6 +17,7 @@ RUN git --version \
     && jq --version
 
 # Install shellcheck
+# @see https://github.com/koalaman/shellcheck/releases
 ENV SHELLCHECK_VERSION=0.7.0
 RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://storage.googleapis.com/shellcheck/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" \
   && tar --xz -xvf "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" \
@@ -24,8 +25,10 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://storage.
   && shellcheck --version
 
 # Install docker && docker compose.
-ENV DOCKER_VERSION=18.09.2
-ENV DOCKER_COMPOSE_VERSION=1.23.2
+# @see https://download.docker.com/linux/static/stable/x86_64
+# @see https://github.com/docker/compose/releases
+ENV DOCKER_VERSION=19.03.5
+ENV DOCKER_COMPOSE_VERSION=1.25.1
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
@@ -35,8 +38,9 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
     && docker-compose --version
 
 # Install composer.
-ENV COMPOSER_VERSION=1.8.6
-ENV COMPOSER_SHA=b66f9b53db72c5117408defe8a1e00515fe749e97ce1b0ae8bdaa6a5a43dd542
+# @see https://getcomposer.org/download
+ENV COMPOSER_VERSION=1.9.1
+ENV COMPOSER_SHA=1f210b9037fcf82670d75892dfc44400f13fe9ada7af9e787f93e50e3b764111
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar" \
     && echo "${COMPOSER_SHA} /usr/local/bin/composer" | sha256sum \
@@ -48,10 +52,11 @@ RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COM
 ENV PATH /root/.composer/vendor/bin:$PATH
 
 # Install NVM and NodeJS.
-ENV NVM_VERSION=v0.34.0
+# @see https://github.com/nvm-sh/nvm/releases
+ENV NVM_VERSION=v0.35.2
 ENV NVM_DIR=/root/.nvm
 RUN mkdir -p "${NVM_DIR}" \
-  && curl -o- "https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh" | bash \
+  && curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash \
   && . $HOME/.nvm/nvm.sh \
   && nvm --version
 
@@ -69,6 +74,7 @@ RUN curl -fsSL https://goss.rocks/install | sh \
   && goss --version
 
 # Install Bats.
+# @see https://github.com/bats-core/bats-core/releases
 ENV BATS_VERSION=v1.1.0
 RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/${BATS_VERSION}.tar.gz" \
     && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
@@ -78,6 +84,7 @@ RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archiv
     && rm -Rf /tmp/bats
 
 # Install Ahoy.
+# @see https://github.com/ahoy-cli/ahoy/releases
 ENV AHOY_VERSION=2.0.0
 RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/${AHOY_VERSION}/ahoy-bin-$(uname -s)-amd64" \
   && chmod +x /usr/local/bin/ahoy \
