@@ -83,7 +83,7 @@ command:
     stdout:
     - 8.
     stderr: []
-    timeout: 10000
+    timeout: 20000
 
   which node:
     exit-status: 0

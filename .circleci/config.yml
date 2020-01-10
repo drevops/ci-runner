@@ -21,10 +21,10 @@ jobs:
           name: Install goss
           command: curl -fsSL https://goss.rocks/install | sh && goss --version
       - run:
-          name: Build container.
+          name: Build image
           command: docker build -t integratedexperts/ci-builder:latest .
       - run:
-          name: Start container
+          name: Test image
           command: dgoss run -i integratedexperts/ci-builder:latest
       - run:
           name: Show versions
