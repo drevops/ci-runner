@@ -99,13 +99,6 @@ command:
     stderr: []
     timeout: 10000
 
-  npm --version:
-    exit-status: 0
-    stdout:
-    - 6.4.1
-    stderr: []
-    timeout: 10000
-
   which ahoy:
     exit-status: 0
     stdout:
@@ -138,13 +131,6 @@ command:
     exit-status: 0
     stdout:
       - /usr/local/bin/bats
-    stderr: []
-    timeout: 10000
-
-  bats -v:
-    exit-status: 0
-    stdout:
-      - Bats 1.1.0
     stderr: []
     timeout: 10000
 
