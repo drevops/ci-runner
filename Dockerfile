@@ -19,7 +19,7 @@ RUN git --version \
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
 ENV SHELLCHECK_VERSION=0.7.0
-RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://storage.googleapis.com/shellcheck/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" \
+RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" \
   && tar --xz -xvf "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" \
   && mv "shellcheck-v${SHELLCHECK_VERSION}/shellcheck" /usr/bin/ \
   && shellcheck --version
