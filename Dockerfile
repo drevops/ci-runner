@@ -1,6 +1,9 @@
 FROM php:7.2-cli
 LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 
+# Ensure temporary files are not retained in image.
+VOLUME /tmp
+
 # Install git and ssh.
 RUN apt-get update -qq \
     && apt-get install -y git ssh lsof zip unzip vim lynx curl aspell-en jq
