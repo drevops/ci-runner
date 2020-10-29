@@ -147,3 +147,10 @@ command:
       - /usr/bin/lsof
     stderr: []
     timeout: 10000
+
+  which tree:
+    exit-status: 0
+    stdout:
+      - /usr/bin/tree
+    stderr: []
+    timeout: 10000

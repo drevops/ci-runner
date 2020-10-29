@@ -27,6 +27,7 @@ commands=(
   "goss --version"
   "bats --version"
   "ahoy --version"
+  "tree --version"
 )
 
 for command in "${commands[@]}"; do

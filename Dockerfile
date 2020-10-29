@@ -3,7 +3,7 @@ LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 
 # Install git and ssh.
 RUN apt-get update -qq \
-    && apt-get install -y git ssh lsof zip unzip vim lynx curl aspell-en jq
+    && apt-get install -y git ssh lsof zip unzip vim lynx curl aspell-en jq tree
 
 RUN git --version \
     && ssh -V \
@@ -14,7 +14,8 @@ RUN git --version \
     && lynx --version \
     && curl --version \
     && aspell --version \
-    && jq --version
+    && jq --version \
+    && tree --version
 
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
