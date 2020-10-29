@@ -5,20 +5,19 @@ Docker image for CI Builder container
 [![DockerHub](https://img.shields.io/docker/build/drevops/ci-builder.svg)](https://hub.docker.com/r/drevops/ci-builder/)
 [![DockerHub](https://img.shields.io/docker/automated/drevops/ci-builder.svg)](https://hub.docker.com/r/drevops/ci-builder/)
 
-It contains several tools required to run docker-based builds:
+It contains several tools required to run Docker-based builds:
 - git
+- php
 - lsof
 - lynx
 - curl
 - vim
 - zip/unzip
-- Docker
-- docker-compose
-- php
-- Composer + parallel download plugin (hirak/prestissimo)
-- NVM and NodeJS
-- Goss - environment testing
-- Ahoy - workflow helper
-- Aspell - English language spellcheker
-- Shellcheck - a shell script static analysis tool
-- Bats - Bash Automated Testing System (2018)
+- [Docker](https://github.com/docker/docker-ce) and [Docker Compose] (https://github.com/docker/compose)
+- [Composer](https://github.com/composer/composer) + parallel download plugin ([hirak/prestissimo](https://github.com/hirak/prestissimo))
+- [NVM](https://github.com/nvm-sh/nvm) and [NodeJS](https://github.com/nodejs/node)
+- [Goss](https://github.com/aelsabbahy/goss) - environment testing
+- [Ahoy](https://github.com/ahoy-cli/ahoy) - workflow helper
+- [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
+- [Shellcheck](https://github.com/koalaman/shellcheck) - a shell script static analysis tool
+- [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)
