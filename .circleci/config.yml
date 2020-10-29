@@ -24,6 +24,9 @@ jobs:
           name: Build image
           command: docker build -t drevops/ci-builder:latest .
       - run:
+          name: Show images information
+          command: docker images
+      - run:
           name: Test image
           command: dgoss run -i drevops/ci-builder:latest
       - run:
