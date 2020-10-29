@@ -2,10 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: php:7.2-cli
+      - image: php:7.4-cli
         environment:
           GOSS_FILES_STRATEGY: cp
-          DOCKER_VERSION: 18.09.2
+          DOCKER_VERSION: 19.03.13
     working_directory: ~/repo
     steps:
       - checkout
