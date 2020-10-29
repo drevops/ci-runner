@@ -1,6 +1,9 @@
 FROM php:7.4-cli
 LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 
+# Ensure temporary files are not retained in the image.
+VOLUME /tmp
+
 # Install git and ssh.
 RUN apt-get update -qq \
     && apt-get install -y git ssh lsof zip unzip vim lynx curl aspell-en jq tree
@@ -82,8 +85,7 @@ RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archiv
     && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
     && cd /tmp/bats \
     && ./install.sh /usr/local \
-    && bats -v \
-    && rm -Rf /tmp/bats
+    && bats -v
 
 # Install Ahoy.
 # @see https://github.com/ahoy-cli/ahoy/releases
