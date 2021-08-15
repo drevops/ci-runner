@@ -154,3 +154,10 @@ command:
       - /usr/bin/tree
     stderr: []
     timeout: 10000
+
+  which rsync:
+    exit-status: 0
+    stdout:
+      - /usr/bin/rsync
+    stderr: []
+    timeout: 10000
