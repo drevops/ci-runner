@@ -28,6 +28,7 @@ commands=(
   "bats --version"
   "ahoy --version"
   "tree --version"
+  "rsync --version"
 )
 
 for command in "${commands[@]}"; do
