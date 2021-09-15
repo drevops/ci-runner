@@ -70,13 +70,6 @@ command:
     stderr: []
     timeout: 10000
 
-  composer global info:
-    exit-status: 0
-    stdout:
-    - /.*composer parallel install plugin/
-    stderr: []
-    timeout: 10000
-
   # Install a global package and assert that it exists.
   composer global require drush/drush:^8 && drush --version:
     exit-status: 0

@@ -1,4 +1,4 @@
-FROM php:7.4-cli
+FROM php:8-cli
 LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 
 # Ensure temporary files are not retained in the image.
@@ -6,7 +6,7 @@ VOLUME /tmp
 
 # Install git and ssh.
 RUN apt-get update -qq \
-    && apt-get install -y git ssh lsof zip unzip vim lynx curl aspell-en jq tree rsync
+    && apt-get install -y --no-install-recommends git openssh-client lsof zip unzip vim lynx curl aspell-en jq tree rsync
 
 RUN git --version \
     && ssh -V \
@@ -31,8 +31,8 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install docker && docker compose.
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
-ENV DOCKER_VERSION=19.03.13
-ENV DOCKER_COMPOSE_VERSION=1.27.4
+ENV DOCKER_VERSION=20.10.8
+ENV DOCKER_COMPOSE_VERSION=1.29.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
@@ -43,15 +43,13 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
 
 # Install composer.
 # @see https://getcomposer.org/download
-ENV COMPOSER_VERSION=1.10.16
-ENV COMPOSER_SHA=1f210b9037fcf82670d75892dfc44400f13fe9ada7af9e787f93e50e3b764111
+ENV COMPOSER_VERSION=2.1.7
+ENV COMPOSER_SHA=756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar" \
     && echo "${COMPOSER_SHA} /usr/local/bin/composer" | sha256sum \
     && chmod +x /usr/local/bin/composer \
     && composer --version \
-    # Install composer plugin to speed up packages downloading.
-    && composer global require hirak/prestissimo \
     && composer clear-cache
 ENV PATH /root/.composer/vendor/bin:$PATH
 

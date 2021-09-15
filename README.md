@@ -21,3 +21,15 @@ It contains several tools required to run Docker-based builds:
 - [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
 - [Shellcheck](https://github.com/koalaman/shellcheck) - a shell script static analysis tool
 - [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)
+
+
+## Maintenance
+This image is built and pushed manually to DockerHub once parent image
+is updated.
+
+See the [CI configuration](.circleci/config.yml) for running tests locally.
+
+### Releasing
+
+        docker build -t drevops/ci-builder:latest
+        docker push docker.io/drevops/ci-builder
