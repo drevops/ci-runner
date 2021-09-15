@@ -31,8 +31,8 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install docker && docker compose.
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
-ENV DOCKER_VERSION=19.03.13
-ENV DOCKER_COMPOSE_VERSION=1.27.4
+ENV DOCKER_VERSION=20.10.8
+ENV DOCKER_COMPOSE_VERSION=1.29.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
