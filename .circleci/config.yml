@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: php:7.4-cli
+      - image: php:8-cli
         environment:
           GOSS_FILES_STRATEGY: cp
           DOCKER_VERSION: 19.03.13

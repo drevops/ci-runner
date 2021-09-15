@@ -1,4 +1,4 @@
-FROM php:7.4-cli
+FROM php:8-cli
 LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 
 # Ensure temporary files are not retained in the image.
