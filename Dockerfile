@@ -43,15 +43,13 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
 
 # Install composer.
 # @see https://getcomposer.org/download
-ENV COMPOSER_VERSION=1.10.16
-ENV COMPOSER_SHA=1f210b9037fcf82670d75892dfc44400f13fe9ada7af9e787f93e50e3b764111
+ENV COMPOSER_VERSION=2.1.7
+ENV COMPOSER_SHA=756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar" \
     && echo "${COMPOSER_SHA} /usr/local/bin/composer" | sha256sum \
     && chmod +x /usr/local/bin/composer \
     && composer --version \
-    # Install composer plugin to speed up packages downloading.
-    && composer global require hirak/prestissimo \
     && composer clear-cache
 ENV PATH /root/.composer/vendor/bin:$PATH
 
