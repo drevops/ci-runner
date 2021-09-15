@@ -6,7 +6,7 @@ VOLUME /tmp
 
 # Install git and ssh.
 RUN apt-get update -qq \
-    && apt-get install -y git ssh lsof zip unzip vim lynx curl aspell-en jq tree rsync
+    && apt-get install -y --no-install-recommends git openssh-client lsof zip unzip vim lynx curl aspell-en jq tree rsync
 
 RUN git --version \
     && ssh -V \

@@ -28,3 +28,8 @@ This image is built and pushed manually to DockerHub once parent image
 is updated.
 
 See the [CI configuration](.circleci/config.yml) for running tests locally.
+
+### Releasing
+
+        docker build -t drevops/ci-builder:latest
+        docker push docker.io/drevops/ci-builder
