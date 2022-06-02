@@ -1,5 +1,5 @@
 FROM php:8.1-cli
-LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
+LABEL Maintainer="Alex Skrypnyk <alex@drevops.com>"
 
 # Ensure temporary files are not retained in the image.
 VOLUME /tmp
