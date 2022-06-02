@@ -3,7 +3,7 @@ Docker image for CI Builder container
 
 [![CircleCI](https://circleci.com/gh/drevops/ci-builder.svg?style=shield)](https://circleci.com/gh/drevops/ci-builder)
 [![DockerHub](https://img.shields.io/docker/pulls/drevops/ci-builder.svg)](https://hub.docker.com/r/drevops/ci-builder/)
-
+![LICENSE](https://img.shields.io/github/license/drevops/ci-builder)
 
 It contains several tools required to run Docker-based builds:
 - git
