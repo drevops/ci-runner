@@ -1,4 +1,4 @@
-FROM php:8-cli
+FROM php:8.1-cli
 LABEL Maintainer="Alex Skrypnyk <alex@integratedexperts.com>"
 
 # Ensure temporary files are not retained in the image.
@@ -22,7 +22,7 @@ RUN git --version \
 
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
-ENV SHELLCHECK_VERSION=0.7.1
+ENV SHELLCHECK_VERSION=0.8.0
 RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" \
   && tar --xz -xvf "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" \
   && mv "shellcheck-v${SHELLCHECK_VERSION}/shellcheck" /usr/bin/ \
@@ -31,7 +31,7 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install docker && docker compose.
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
-ENV DOCKER_VERSION=20.10.8
+ENV DOCKER_VERSION=20.10.0
 ENV DOCKER_COMPOSE_VERSION=1.29.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
@@ -43,8 +43,8 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
 
 # Install composer.
 # @see https://getcomposer.org/download
-ENV COMPOSER_VERSION=2.1.7
-ENV COMPOSER_SHA=756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3
+ENV COMPOSER_VERSION=2.3.6
+ENV COMPOSER_SHA=55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar" \
     && echo "${COMPOSER_SHA} /usr/local/bin/composer" | sha256sum \
@@ -55,14 +55,14 @@ ENV PATH /root/.composer/vendor/bin:$PATH
 
 # Install NVM and NodeJS.
 # @see https://github.com/nvm-sh/nvm/releases
-ENV NVM_VERSION=v0.36.0
+ENV NVM_VERSION=v0.39.1
 ENV NVM_DIR=/root/.nvm
 RUN mkdir -p "${NVM_DIR}" \
   && curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash \
   && . $HOME/.nvm/nvm.sh \
   && nvm --version
 
-ENV SHIPPABLE_NODE_VERSION=v15.0.1
+ENV SHIPPABLE_NODE_VERSION=v16.13.0
 RUN . $HOME/.nvm/nvm.sh \
 	&& nvm install "${SHIPPABLE_NODE_VERSION}" \
 	&& nvm alias default "${SHIPPABLE_NODE_VERSION}" \
@@ -78,7 +78,7 @@ RUN curl -fsSL https://goss.rocks/install | sh \
 
 # Install Bats.
 # @see https://github.com/bats-core/bats-core/releases
-ENV BATS_VERSION=v1.2.1
+ENV BATS_VERSION=v1.7.0
 RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/${BATS_VERSION}.tar.gz" \
     && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
     && cd /tmp/bats \
