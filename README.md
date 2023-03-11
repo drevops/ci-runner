@@ -1,5 +1,5 @@
 # CI Builder
-Docker image for CI Builder container
+Docker image used in CI as a builder container
 
 [![CircleCI](https://circleci.com/gh/drevops/ci-builder.svg?style=shield)](https://circleci.com/gh/drevops/ci-builder)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/drevops/ci-builder)
