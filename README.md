@@ -26,4 +26,6 @@ It contains several tools required to run Docker-based builds:
 
 ## Maintenance and releasing
 
-This image is built by DockerHub when release is published on GitHub via an automated build.
+This image is built by DockerHub via an automated build when release tag is published on GitHub.
+
+Pre-release version is tested using `preview/x.y.z` branch. Pushes to this braches are built in DockerHub.
