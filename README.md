@@ -15,7 +15,7 @@ It contains several tools required to run Docker-based builds:
 - vim
 - zip/unzip
 - [Docker](https://github.com/docker/docker-ce) and [Docker Compose] (https://github.com/docker/compose)
-- [Composer](https://github.com/composer/composer) + parallel download plugin ([hirak/prestissimo](https://github.com/hirak/prestissimo))
+- [Composer](https://github.com/composer/composer)
 - [NVM](https://github.com/nvm-sh/nvm) and [NodeJS](https://github.com/nodejs/node)
 - [Goss](https://github.com/aelsabbahy/goss) - environment testing
 - [Ahoy](https://github.com/ahoy-cli/ahoy) - workflow helper
@@ -28,4 +28,4 @@ It contains several tools required to run Docker-based builds:
 
 This image is built by DockerHub via an automated build when release tag is published on GitHub.
 
-Pre-release version is tested using `preview/x.y.z` branch. Pushes to this braches are built in DockerHub.
+Pre-release version is tested using `preview/x.y.z` branch. Pushes to this branches are built in DockerHub.
