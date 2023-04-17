@@ -31,7 +31,7 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install docker && docker compose.
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
-ENV DOCKER_VERSION=20.10.23
+ENV DOCKER_VERSION=20.10.24
 ENV DOCKER_COMPOSE_VERSION=v2.17.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
@@ -50,7 +50,7 @@ RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOS
 
 # Install composer.
 # @see https://getcomposer.org/download
-ENV COMPOSER_VERSION=2.5.4
+ENV COMPOSER_VERSION=2.5.5
 ENV COMPOSER_SHA=55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar" \
@@ -69,7 +69,7 @@ RUN mkdir -p "${NVM_DIR}" \
   && . $HOME/.nvm/nvm.sh \
   && nvm --version
 
-ENV SHIPPABLE_NODE_VERSION=v19.8.1
+ENV SHIPPABLE_NODE_VERSION=v19.9.0
 RUN . $HOME/.nvm/nvm.sh \
 	&& nvm install "${SHIPPABLE_NODE_VERSION}" \
 	&& nvm alias default "${SHIPPABLE_NODE_VERSION}" \
@@ -94,7 +94,7 @@ RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archiv
 
 # Install Ahoy.
 # @see https://github.com/ahoy-cli/ahoy/releases
-ENV AHOY_VERSION=2.0.2
+ENV AHOY_VERSION=v2.1.1
 RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/${AHOY_VERSION}/ahoy-bin-$(uname -s)-amd64" \
   && chmod +x /usr/local/bin/ahoy \
   && ahoy --version
