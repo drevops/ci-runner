@@ -56,10 +56,24 @@ command:
     stderr: []
     timeout: 10000
 
+  docker compose version:
+    exit-status: 0
+    stdout:
+      - Docker Compose version v2
+    stderr: []
+    timeout: 10000
+
   which docker-compose:
     exit-status: 0
     stdout:
     - /usr/local/bin/docker-compose
+    stderr: []
+    timeout: 10000
+
+  docker-compose version:
+    exit-status: 0
+    stdout:
+      - docker-compose version 1
     stderr: []
     timeout: 10000
 

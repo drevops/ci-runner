@@ -32,14 +32,21 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
 ENV DOCKER_VERSION=20.10.23
-ENV DOCKER_COMPOSE_VERSION=1.29.2
+ENV DOCKER_COMPOSE_VERSION=v2.17.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
     && docker --version \
-    && curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose \
+    && mkdir -p $HOME/.docker/cli-plugins \
+    && curl -sSL https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) -o $HOME/.docker/cli-plugins/docker-compose \
+    && chmod +x $HOME/.docker/cli-plugins/docker-compose \
+    && docker compose version
+
+ENV DOCKER_COMPOSE_LEGACY_VERSION=1.29.2
+RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_LEGACY_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose \
-    && docker-compose --version
+    && docker-compose version \
+    && echo "WARNING: Docker Compose v1 will be deprecated as of July 2023 and will not be included in future versions of this image. We strongly encourage users to transition to Docker Compose v2 for continued support and improved functionality." >&2
 
 # Install composer.
 # @see https://getcomposer.org/download
