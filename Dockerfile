@@ -79,6 +79,7 @@ ENV PATH ${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 
 # Install Goss.
 # @see https://github.com/aelsabbahy/goss
+ENV GOSS_VER=v0.3.22
 ENV GOSS_FILES_STRATEGY=cp
 RUN curl -fsSL https://goss.rocks/install | sh \
   && goss --version
