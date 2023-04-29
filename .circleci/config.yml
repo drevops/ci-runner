@@ -22,13 +22,13 @@ jobs:
           command: curl -fsSL https://goss.rocks/install | sh && goss --version
       - run:
           name: Build image
-          command: docker build -t drevops/ci-builder:latest .
+          command: docker build -t drevops/ci-builder:test-ci .
       - run:
           name: Show images information
           command: docker images
       - run:
           name: Test image
-          command: dgoss run -i drevops/ci-builder:latest
+          command: dgoss run -i drevops/ci-builder:test-ci
       - run:
           name: Show versions
-          command: ./versions.sh "drevops/ci-builder:latest"
+          command: ./versions.sh "drevops/ci-builder:test-ci"
