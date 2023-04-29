@@ -16,6 +16,8 @@ commands=(
   "curl --version"
   "aspell --version"
   "jq --version"
+  "tree --version"
+  "rsync --version"
   "shellcheck --version"
   "docker --version"
   "docker compose version"
