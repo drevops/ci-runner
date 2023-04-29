@@ -18,6 +18,9 @@ jobs:
             && mv /tmp/docker/* /usr/bin \
             && docker --version
       - run:
+          name: Lint Dockerfile
+          command: docker run --rm -i hadolint/hadolint < Dockerfile
+      - run:
           name: Install goss
           command: curl -fsSL https://goss.rocks/install | sh && goss --version
       - run:

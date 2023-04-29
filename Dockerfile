@@ -1,24 +1,15 @@
 FROM php:8.1-cli
-LABEL Maintainer="Alex Skrypnyk <alex@drevops.com>"
+
+LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" maintainer="Alex Skrypnyk <alex@drevops.com>"
 
 # Ensure temporary files are not retained in the image.
 VOLUME /tmp
 
-# Install git and ssh.
+# hadolint ignore=DL3008
 RUN apt-get update -qq \
-    && apt-get install -y --no-install-recommends git openssh-client lsof zip unzip vim lynx curl aspell-en jq tree rsync
-
-RUN git --version \
-    && ssh -V \
-    && lsof -v \
-    && zip --version \
-    && unzip -v \
-    && vim --version \
-    && lynx --version \
-    && curl --version \
-    && aspell --version \
-    && jq --version \
-    && tree --version
+    && apt-get install -y --no-install-recommends git openssh-client lsof zip unzip vim lynx curl aspell-en jq tree rsync \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
@@ -37,9 +28,9 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
     && docker --version \
-    && mkdir -p $HOME/.docker/cli-plugins \
-    && curl -sSL https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) -o $HOME/.docker/cli-plugins/docker-compose \
-    && chmod +x $HOME/.docker/cli-plugins/docker-compose \
+    && mkdir -p "$HOME/.docker/cli-plugins" \
+    && curl -sSL "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" \
+    && chmod +x "$HOME/.docker/cli-plugins/docker-compose" \
     && docker compose version
 
 # Install Docker Compose V1 (docker-compose).
@@ -61,6 +52,7 @@ RUN mkdir -vp ~/.docker/cli-plugins \
 ENV COMPOSER_VERSION=2.5.5
 ENV COMPOSER_SHA=55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae
 ENV COMPOSER_ALLOW_SUPERUSER=1
+# hadolint ignore=DL4006
 RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar" \
     && echo "${COMPOSER_SHA} /usr/local/bin/composer" | sha256sum \
     && chmod +x /usr/local/bin/composer \
@@ -72,13 +64,15 @@ ENV PATH /root/.composer/vendor/bin:$PATH
 # @see https://github.com/nvm-sh/nvm/releases
 ENV NVM_VERSION=v0.39.3
 ENV NVM_DIR=/root/.nvm
+# hadolint ignore=DL4006,SC1091
 RUN mkdir -p "${NVM_DIR}" \
   && curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash \
-  && . $HOME/.nvm/nvm.sh \
+  && . "$HOME/.nvm/nvm.sh" \
   && nvm --version
 
 ENV SHIPPABLE_NODE_VERSION=v19.9.0
-RUN . $HOME/.nvm/nvm.sh \
+# hadolint ignore=SC1091
+RUN . "$HOME/.nvm/nvm.sh" \
 	&& nvm install "${SHIPPABLE_NODE_VERSION}" \
 	&& nvm alias default "${SHIPPABLE_NODE_VERSION}" \
 	&& nvm use default \
@@ -89,12 +83,14 @@ ENV PATH ${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 # @see https://github.com/aelsabbahy/goss
 ENV GOSS_VER=v0.3.22
 ENV GOSS_FILES_STRATEGY=cp
+# hadolint ignore=DL4006
 RUN curl -fsSL https://goss.rocks/install | sh \
   && goss --version
 
 # Install Bats.
 # @see https://github.com/bats-core/bats-core/releases
 ENV BATS_VERSION=v1.9.0
+# hadolint ignore=DL3003
 RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/${BATS_VERSION}.tar.gz" \
     && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
     && cd /tmp/bats \
