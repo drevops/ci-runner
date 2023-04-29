@@ -63,6 +63,13 @@ command:
     stderr: []
     timeout: 10000
 
+  docker buildx version:
+    exit-status: 0
+    stdout:
+      - buildx
+    stderr: []
+    timeout: 10000
+
   which docker-compose:
     exit-status: 0
     stdout:

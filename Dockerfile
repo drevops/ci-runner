@@ -28,7 +28,7 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
   && mv "shellcheck-v${SHELLCHECK_VERSION}/shellcheck" /usr/bin/ \
   && shellcheck --version
 
-# Install docker && docker compose.
+# Install Docker and Docker Compose V2 (docker compose).
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
 ENV DOCKER_VERSION=20.10.24
@@ -42,11 +42,19 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
     && chmod +x $HOME/.docker/cli-plugins/docker-compose \
     && docker compose version
 
+# Install Docker Compose V1 (docker-compose).
 ENV DOCKER_COMPOSE_LEGACY_VERSION=1.29.2
 RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_LEGACY_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose \
     && docker-compose version \
     && echo "WARNING: Docker Compose v1 will be deprecated as of July 2023 and will not be included in future versions of this image. We strongly encourage users to transition to Docker Compose v2 for continued support and improved functionality." >&2
+
+# Install Docker buildx (docker buildx).
+ENV BUILDX_VERSION=v0.10.4
+RUN mkdir -vp ~/.docker/cli-plugins \
+    && curl --silent -L "https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
+    && chmod a+x ~/.docker/cli-plugins/docker-buildx \
+    && docker buildx version
 
 # Install composer.
 # @see https://getcomposer.org/download
