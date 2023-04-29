@@ -32,9 +32,3 @@ jobs:
       - run:
           name: Show versions
           command: ./versions.sh "drevops/ci-builder:latest"
-
-workflows:
-  version: 2
-  commit:
-    jobs:
-      - build
