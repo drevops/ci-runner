@@ -22,8 +22,8 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install Docker and Docker Compose V2 (docker compose).
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
-ENV DOCKER_VERSION=20.10.24
-ENV DOCKER_COMPOSE_VERSION=v2.17.3
+ENV DOCKER_VERSION=24.0.5
+ENV DOCKER_COMPOSE_VERSION=v2.20.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
@@ -41,7 +41,8 @@ RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOS
     && echo "WARNING: Docker Compose v1 will be deprecated as of July 2023 and will not be included in future versions of this image. We strongly encourage users to transition to Docker Compose v2 for continued support and improved functionality." >&2
 
 # Install Docker buildx (docker buildx).
-ENV BUILDX_VERSION=v0.10.4
+# @see https://github.com/docker/buildx/releases
+ENV BUILDX_VERSION=v0.11.2
 RUN mkdir -vp ~/.docker/cli-plugins \
     && curl --silent -L "https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
     && chmod a+x ~/.docker/cli-plugins/docker-buildx \
@@ -49,8 +50,8 @@ RUN mkdir -vp ~/.docker/cli-plugins \
 
 # Install composer.
 # @see https://getcomposer.org/download
-ENV COMPOSER_VERSION=2.5.5
-ENV COMPOSER_SHA=55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae
+ENV COMPOSER_VERSION=2.5.8
+ENV COMPOSER_SHA=e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02
 ENV COMPOSER_ALLOW_SUPERUSER=1
 # hadolint ignore=DL4006
 RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COMPOSER_VERSION}/composer.phar" \
@@ -62,7 +63,7 @@ ENV PATH /root/.composer/vendor/bin:$PATH
 
 # Install NVM and NodeJS.
 # @see https://github.com/nvm-sh/nvm/releases
-ENV NVM_VERSION=v0.39.3
+ENV NVM_VERSION=v0.39.4
 ENV NVM_DIR=/root/.nvm
 # hadolint ignore=DL4006,SC1091
 RUN mkdir -p "${NVM_DIR}" \
@@ -70,7 +71,7 @@ RUN mkdir -p "${NVM_DIR}" \
   && . "$HOME/.nvm/nvm.sh" \
   && nvm --version
 
-ENV SHIPPABLE_NODE_VERSION=v19.9.0
+ENV SHIPPABLE_NODE_VERSION=v20.5.0
 # hadolint ignore=SC1091
 RUN . "$HOME/.nvm/nvm.sh" \
 	&& nvm install "${SHIPPABLE_NODE_VERSION}" \
@@ -81,7 +82,7 @@ ENV PATH ${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 
 # Install Goss.
 # @see https://github.com/aelsabbahy/goss
-ENV GOSS_VER=v0.3.22
+ENV GOSS_VER=v0.3.23
 ENV GOSS_FILES_STRATEGY=cp
 # hadolint ignore=DL4006
 RUN curl -fsSL https://goss.rocks/install | sh \
@@ -89,7 +90,7 @@ RUN curl -fsSL https://goss.rocks/install | sh \
 
 # Install Bats.
 # @see https://github.com/bats-core/bats-core/releases
-ENV BATS_VERSION=v1.9.0
+ENV BATS_VERSION=v1.10.0
 # hadolint ignore=DL3003
 RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/${BATS_VERSION}.tar.gz" \
     && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
