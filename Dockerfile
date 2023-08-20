@@ -1,4 +1,4 @@
-FROM php:8.1-cli
+FROM php:8.1-cli-bookworm
 
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" maintainer="Alex Skrypnyk <alex@drevops.com>"
 
