@@ -31,6 +31,7 @@ commands=(
   "goss --version"
   "bats --version"
   "ahoy --version"
+  "task --version"
   "tree --version"
   "rsync --version"
 )

@@ -14,11 +14,12 @@ It contains several tools required to run Docker-based builds:
 - curl
 - vim
 - zip/unzip
-- [Docker](https://github.com/docker/docker-ce) and [Docker Compose] (https://github.com/docker/compose)
+- [Docker](https://github.com/docker/docker-ce) and [Docker Compose](https://github.com/docker/compose)
 - [Composer](https://github.com/composer/composer)
 - [NVM](https://github.com/nvm-sh/nvm) and [NodeJS](https://github.com/nodejs/node)
 - [Goss](https://github.com/aelsabbahy/goss) - environment testing
 - [Ahoy](https://github.com/ahoy-cli/ahoy) - workflow helper
+- [Task](https://github.com/go-task/task) - workflow helper
 - [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
 - [Shellcheck](https://github.com/koalaman/shellcheck) - a shell script static analysis tool
 - [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)

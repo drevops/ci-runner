@@ -105,6 +105,11 @@ RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/
   && chmod +x /usr/local/bin/ahoy \
   && ahoy --version
 
+# Install Task.
+# @see https://github.com/go-task/task/releases
+ENV TASK_VERSION=v3.28.0
+RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "$TASK_VERSION"
+
 # Install a stub for pygmy.
 # Some frameworks may require presence of pygmy to run, but pygmy is not required in CI container.
 RUN touch /usr/local/bin/pygmy \
