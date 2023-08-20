@@ -120,6 +120,13 @@ command:
     stderr: []
     timeout: 10000
 
+  which task:
+    exit-status: 0
+    stdout:
+    - /usr/local/bin/task
+    stderr: []
+    timeout: 10000
+
   which aspell:
     exit-status: 0
     stdout:
