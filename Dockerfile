@@ -23,7 +23,7 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
 ENV DOCKER_VERSION=24.0.5
-ENV DOCKER_COMPOSE_VERSION=v2.20.2
+ENV DOCKER_COMPOSE_VERSION=v2.20.3
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
@@ -71,7 +71,7 @@ RUN mkdir -p "${NVM_DIR}" \
   && . "$HOME/.nvm/nvm.sh" \
   && nvm --version
 
-ENV SHIPPABLE_NODE_VERSION=v20.5.0
+ENV SHIPPABLE_NODE_VERSION=v20.5.1
 # hadolint ignore=SC1091
 RUN . "$HOME/.nvm/nvm.sh" \
 	&& nvm install "${SHIPPABLE_NODE_VERSION}" \
