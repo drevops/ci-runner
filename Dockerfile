@@ -109,3 +109,6 @@ RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/
 # Some frameworks may require presence of pygmy to run, but pygmy is not required in CI container.
 RUN touch /usr/local/bin/pygmy \
  && chmod +x /usr/local/bin/pygmy
+
+# Create a stub for sendmail.
+RUN ln -s /usr/bin/true /usr/local/bin/sendmail
