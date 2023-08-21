@@ -33,13 +33,6 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
     && chmod +x "$HOME/.docker/cli-plugins/docker-compose" \
     && docker compose version
 
-# Install Docker Compose V1 (docker-compose).
-ENV DOCKER_COMPOSE_LEGACY_VERSION=1.29.2
-RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_LEGACY_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose \
-    && chmod +x /usr/local/bin/docker-compose \
-    && docker-compose version \
-    && echo "WARNING: Docker Compose v1 will be deprecated as of July 2023 and will not be included in future versions of this image. We strongly encourage users to transition to Docker Compose v2 for continued support and improved functionality." >&2
-
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 ENV BUILDX_VERSION=v0.11.2

@@ -22,7 +22,6 @@ commands=(
   "docker --version"
   "docker compose version"
   "docker buildx version"
-  "docker-compose version"
   "php --version"
   "composer --version"
   "npm --version"
