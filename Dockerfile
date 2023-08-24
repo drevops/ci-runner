@@ -19,6 +19,14 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
   && mv "shellcheck-v${SHELLCHECK_VERSION}/shellcheck" /usr/bin/ \
   && shellcheck --version
 
+# Install shfmt
+# @see https://github.com/mvdan/sh/releases
+ENV SHFMT_VERSION=3.7.0
+RUN curl -L -o "/tmp/shfmt-v${SHFMT_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_linux_386" \
+  && mv "/tmp/shfmt-v${SHFMT_VERSION}" /usr/bin/shfmt \
+  && chmod +x /usr/bin/shfmt \
+  && shfmt --version
+
 # Install Docker and Docker Compose V2 (docker compose).
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases

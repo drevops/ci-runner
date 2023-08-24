@@ -134,6 +134,13 @@ command:
     stderr: []
     timeout: 10000
 
+  which shfmt:
+    exit-status: 0
+    stdout:
+      - /usr/bin/shfmt
+    stderr: []
+    timeout: 10000
+
   which bats:
     exit-status: 0
     stdout:
