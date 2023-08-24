@@ -44,8 +44,7 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 ENV BUILDX_VERSION=v0.11.2
-RUN mkdir -vp ~/.docker/cli-plugins \
-    && curl --silent -L "https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
+RUN curl --silent -L "https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
     && chmod a+x ~/.docker/cli-plugins/docker-buildx \
     && docker buildx version
 
@@ -112,9 +111,6 @@ ENV TASK_VERSION=v3.28.0
 RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "$TASK_VERSION"
 
 # Install a stub for pygmy.
-# Some frameworks may require presence of pygmy to run, but pygmy is not required in CI container.
-RUN touch /usr/local/bin/pygmy \
- && chmod +x /usr/local/bin/pygmy
-
-# Create a stub for sendmail.
-RUN ln -s /usr/bin/true /usr/local/bin/sendmail
+# Some frameworks may require presence of tools that are not required in CI container.
+RUN ln -s /usr/bin/true /usr/local/bin/pygmy \
+ && ln -s /usr/bin/true /usr/local/bin/sendmail
