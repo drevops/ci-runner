@@ -22,6 +22,7 @@ It contains several tools required to run Docker-based builds:
 - [Task](https://github.com/go-task/task) - workflow helper
 - [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
 - [Shellcheck](https://github.com/koalaman/shellcheck) - a shell script static analysis tool
+- [shfmt](https://github.com/mvdan/sh) - a shell parser, formatter, and interpreter.
 - [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)
 
 

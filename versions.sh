@@ -19,6 +19,7 @@ commands=(
   "tree --version"
   "rsync --version"
   "shellcheck --version"
+  "shfmt --version"
   "docker --version"
   "docker compose version"
   "docker buildx version"
