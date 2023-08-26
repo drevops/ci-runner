@@ -148,6 +148,13 @@ command:
     stderr: []
     timeout: 10000
 
+  which kcov:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/kcov
+    stderr: []
+    timeout: 10000
+
   which pygmy:
     exit-status: 0
     stdout:
