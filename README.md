@@ -54,8 +54,16 @@ Example: `23.4.2` indicates the third patch in April 2023.
 
 ### Releasing
 
+Releases are scheduled to occur at a minimum of once per month.
+
 This image is built by DockerHub via an automated build and tagged as follows:
 
  - `YY.m.patch` tag - when release tag is published on GitHub.
  - `latest` - when release tag is published on GitHub.
  - `canary` - on every push to `main` branch
+
+### Dependencies update
+
+Renovation bot is used to update dependencies. It creates a PR with the changes 
+and automatically merges it if CI passes. These changes are then released as 
+a `canary` version.
