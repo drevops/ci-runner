@@ -28,6 +28,20 @@ It contains several tools required to run Docker-based builds (in alphabetical o
 
 ## Maintenance and releasing
 
-This image is built by DockerHub via an automated build when release tag is published on GitHub.
+### Versioning
 
-Pre-release version is tested using `preview/x.y.z` branch. Pushes to this branches are built in DockerHub.
+This project uses _Year-Month-Patch_ versioning:
+
+- `YY`: Last two digits of the year, e.g., `23` for 2023.
+- `m`: Numeric month, e.g., April is `4`.
+- `patch`: Patch number for the month, starting at `0`.
+
+**Example:** `23.4.2` indicates the third patch in April 2023.
+
+### Releasing
+
+This image is built by DockerHub via an automated build and tagged as follows:
+
+ - `YY.m.patch` tag - when release tag is published on GitHub.
+ - `latest` - when release tag is published on GitHub.
+ - `canary` - on every push to `main` branch
