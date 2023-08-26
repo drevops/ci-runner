@@ -18,6 +18,7 @@ RUN apt-get update -qq \
 
 # Install kcov.
 # @see https://github.com/SimonKagstrom/kcov/releases
+# renovate: datasource=github-releases depName=SimonKagstrom/kcov extractVersion=^v(?<version>.*)$
 ENV KCOV_VERSION=42
 # hadolint ignore=DL3003
 RUN curl -L -o "/tmp/kcov.tar.gz" "https://github.com/SimonKagstrom/kcov/archive/refs/tags/v${KCOV_VERSION}.tar.gz" \
@@ -60,6 +61,7 @@ RUN apt-get update -qq \
 
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
+# renovate: datasource=github-releases depName=koalaman/shellcheck extractVersion=^v(?<version>.*)$
 ENV SHELLCHECK_VERSION=0.9.0
 RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" \
   && tar --xz -xvf "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" \
@@ -68,7 +70,8 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 
 # Install shfmt
 # @see https://github.com/mvdan/sh/releases
-ENV SHFMT_VERSION=3.7.0
+# renovate: datasource=github-releases depName=mvdan/sh extractVersion=^v(?<version>.*)$
+ENV SHFMT_VERSION=3.6.0
 # hadolint ignore=SC2015
 RUN curl -L -o "/tmp/shfmt-v${SHFMT_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_linux_386" \
   && mv "/tmp/shfmt-v${SHFMT_VERSION}" /usr/bin/shfmt \
@@ -79,20 +82,22 @@ RUN curl -L -o "/tmp/shfmt-v${SHFMT_VERSION}" "https://github.com/mvdan/sh/relea
 # @see https://download.docker.com/linux/static/stable/x86_64
 # @see https://github.com/docker/compose/releases
 ENV DOCKER_VERSION=24.0.5
-ENV DOCKER_COMPOSE_VERSION=v2.20.3
+# renovate: datasource=github-releases depName=docker/compose extractVersion=^v(?<version>.*)$
+ENV DOCKER_COMPOSE_VERSION=2.20.3
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
     && docker --version \
     && mkdir -p "$HOME/.docker/cli-plugins" \
-    && curl -sSL "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" \
+    && curl -sSL "https://github.com/docker/compose/releases/download/v${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" \
     && chmod +x "$HOME/.docker/cli-plugins/docker-compose" \
     && docker compose version
 
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
-ENV BUILDX_VERSION=v0.11.2
-RUN curl --silent -L "https://github.com/docker/buildx/releases/download/${BUILDX_VERSION}/buildx-${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
+# renovate: datasource=github-releases depName=docker/buildx extractVersion=^v(?<version>.*)$
+ENV BUILDX_VERSION=0.11.2
+RUN curl --silent -L "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
     && chmod a+x ~/.docker/cli-plugins/docker-buildx \
     && docker buildx version
 
@@ -130,6 +135,7 @@ ENV PATH ${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 
 # Install Goss.
 # @see https://github.com/aelsabbahy/goss
+# renovate: datasource=github-releases depName=aelsabbahy/goss extractVersion=^(?<version>.*)$
 ENV GOSS_VER=v0.3.23
 ENV GOSS_FILES_STRATEGY=cp
 # hadolint ignore=DL4006
@@ -138,9 +144,10 @@ RUN curl -fsSL https://goss.rocks/install | sh \
 
 # Install Bats.
 # @see https://github.com/bats-core/bats-core/releases
-ENV BATS_VERSION=v1.10.0
+# renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^v(?<version>.*)$
+ENV BATS_VERSION=1.10.0
 # hadolint ignore=DL3003
-RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/${BATS_VERSION}.tar.gz" \
+RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/v${BATS_VERSION}.tar.gz" \
     && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
     && cd /tmp/bats \
     && ./install.sh /usr/local \
@@ -148,15 +155,17 @@ RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archiv
 
 # Install Ahoy.
 # @see https://github.com/ahoy-cli/ahoy/releases
-ENV AHOY_VERSION=v2.1.1
-RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/${AHOY_VERSION}/ahoy-bin-$(uname -s)-amd64" \
+# renovate: datasource=github-releases depName=ahoy-cli/ahoy extractVersion=^v(?<version>.*)$
+ENV AHOY_VERSION=2.1.1
+RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-$(uname -s)-amd64" \
   && chmod +x /usr/local/bin/ahoy \
   && ahoy --version
 
 # Install Task.
 # @see https://github.com/go-task/task/releases
-ENV TASK_VERSION=v3.28.0
-RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "$TASK_VERSION"
+# renovate: datasource=github-releases depName=go-task/task extractVersion=^v(?<version>.*)$
+ENV TASK_VERSION=3.28.0
+RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "v$TASK_VERSION"
 
 # Install a stub for pygmy.
 # Some frameworks may require presence of tools that are not required in CI container.
