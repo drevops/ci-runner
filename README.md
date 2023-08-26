@@ -26,6 +26,20 @@ It contains several tools required to run Docker-based builds (in alphabetical o
 - vim
 - zip/unzip
 
+## Usage
+
+Make sure to **always** pin the version of this image to the tag:
+
+```
+drevops/ci-builder:23.8.1
+```
+
+For testing purposes, you can use the `canary` tag:
+
+```
+drevops/ci-builder:canary
+```
+
 ## Maintenance and releasing
 
 ### Versioning
@@ -36,7 +50,7 @@ This project uses _Year-Month-Patch_ versioning:
 - `m`: Numeric month, e.g., April is `4`.
 - `patch`: Patch number for the month, starting at `0`.
 
-**Example:** `23.4.2` indicates the third patch in April 2023.
+Example: `23.4.2` indicates the third patch in April 2023.
 
 ### Releasing
 
