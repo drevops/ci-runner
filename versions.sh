@@ -30,6 +30,7 @@ commands=(
   "node --version"
   "goss --version"
   "bats --version"
+  "kcov --version"
   "ahoy --version"
   "task --version"
   "tree --version"

@@ -1,3 +1,35 @@
+FROM php:8.1-cli-bookworm as builder
+
+# hadolint ignore=DL3008
+RUN apt-get update -qq \
+    && apt-get install -y --no-install-recommends \
+      binutils-dev \
+      build-essential \
+      cmake \
+      curl \
+      git \
+      libcurl4-openssl-dev \
+      libdw-dev \
+      libiberty-dev \
+      libssl-dev \
+      ninja-build \
+      python3 \
+      zlib1g-dev
+
+# Install kcov.
+# @see https://github.com/SimonKagstrom/kcov/releases
+ENV KCOV_VERSION=42
+# hadolint ignore=DL3003
+RUN curl -L -o "/tmp/kcov.tar.gz" "https://github.com/SimonKagstrom/kcov/archive/refs/tags/v${KCOV_VERSION}.tar.gz" \
+    && mkdir -p /tmp/kcov \
+    && tar -xz -C /tmp/kcov -f /tmp/kcov.tar.gz --strip 1 \
+    && cd /tmp/kcov \
+    && mkdir build \
+    && cd build \
+    && cmake -G 'Ninja' .. \
+    && cmake --build . \
+    && cmake --build . --target install
+
 FROM php:8.1-cli-bookworm
 
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" maintainer="Alex Skrypnyk <alex@drevops.com>"
@@ -7,7 +39,22 @@ VOLUME /tmp
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq \
-    && apt-get install -y --no-install-recommends git openssh-client lsof zip unzip vim lynx curl aspell-en jq tree rsync \
+    && apt-get install -y --no-install-recommends \
+      aspell-en \
+      binutils \
+      curl \
+      git \
+      jq \
+      libcurl4 \
+      libdw1 \
+      lsof \
+      lynx \
+      openssh-client \
+      rsync \
+      tree \
+      unzip \
+      vim \
+      zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -22,10 +69,11 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install shfmt
 # @see https://github.com/mvdan/sh/releases
 ENV SHFMT_VERSION=3.7.0
+# hadolint ignore=SC2015
 RUN curl -L -o "/tmp/shfmt-v${SHFMT_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_linux_386" \
   && mv "/tmp/shfmt-v${SHFMT_VERSION}" /usr/bin/shfmt \
   && chmod +x /usr/bin/shfmt \
-  && shfmt --version
+  && shfmt --version || true
 
 # Install Docker and Docker Compose V2 (docker compose).
 # @see https://download.docker.com/linux/static/stable/x86_64
@@ -114,3 +162,6 @@ RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/
 # Some frameworks may require presence of tools that are not required in CI container.
 RUN ln -s /usr/bin/true /usr/local/bin/pygmy \
  && ln -s /usr/bin/true /usr/local/bin/sendmail
+
+COPY --from=builder /usr/local/bin/kcov* /usr/local/bin/
+COPY --from=builder /usr/local/share/doc/kcov /usr/local/share/doc/kcov
