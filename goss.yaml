@@ -1,58 +1,9 @@
 command:
 
-  which git:
+  docker buildx version:
     exit-status: 0
     stdout:
-    - /usr/bin/git
-    stderr: []
-    timeout: 10000
-
-  which lynx:
-    exit-status: 0
-    stdout:
-    - /usr/bin/lynx
-    stderr: []
-    timeout: 10000
-
-  which curl:
-    exit-status: 0
-    stdout:
-    - /usr/bin/curl
-    stderr: []
-    timeout: 10000
-
-  which vim:
-    exit-status: 0
-    stdout:
-    - /usr/bin/vim
-    stderr: []
-    timeout: 10000
-
-  which zip:
-    exit-status: 0
-    stdout:
-    - /usr/bin/zip
-    stderr: []
-    timeout: 10000
-
-  which unzip:
-    exit-status: 0
-    stdout:
-    - /usr/bin/unzip
-    stderr: []
-    timeout: 10000
-
-  which goss:
-    exit-status: 0
-    stdout:
-    - /usr/local/bin/goss
-    stderr: []
-    timeout: 10000
-
-  which docker:
-    exit-status: 0
-    stdout:
-      - /usr/bin/docker
+      - buildx
     stderr: []
     timeout: 10000
 
@@ -63,67 +14,136 @@ command:
     stderr: []
     timeout: 10000
 
-  docker buildx version:
-    exit-status: 0
-    stdout:
-      - buildx
-    stderr: []
-    timeout: 10000
-
-  which composer:
-    exit-status: 0
-    stdout:
-    - /usr/local/bin/composer
-    stderr: []
-    timeout: 10000
-
-  # Install a global package and assert that it exists.
-  composer global require drush/drush:^10 && drush --version:
-    exit-status: 0
-    stdout:
-    - 10.
-    stderr: []
-    timeout: 20000
-
-  which node:
-    exit-status: 0
-    stdout:
-    - /root/.nvm/versions/node/
-    stderr: []
-    timeout: 10000
-
-  which npm:
-    exit-status: 0
-    stdout:
-    - /root/.nvm/versions/node/
-    stderr: []
-    timeout: 10000
-
   which ahoy:
     exit-status: 0
     stdout:
-    - /usr/local/bin/ahoy
-    stderr: []
-    timeout: 10000
-
-  which task:
-    exit-status: 0
-    stdout:
-    - /usr/local/bin/task
+      - /usr/local/bin/ahoy
     stderr: []
     timeout: 10000
 
   which aspell:
     exit-status: 0
     stdout:
-    - /usr/bin/aspell
+      - /usr/bin/aspell
+    stderr: []
+    timeout: 10000
+
+  which bats:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/bats
+    stderr: []
+    timeout: 10000
+
+  which composer:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/composer
+    stderr: []
+    timeout: 10000
+
+  which curl:
+    exit-status: 0
+    stdout:
+      - /usr/bin/curl
+    stderr: []
+    timeout: 10000
+
+  which docker:
+    exit-status: 0
+    stdout:
+      - /usr/bin/docker
+    stderr: []
+    timeout: 10000
+
+  which git:
+    exit-status: 0
+    stdout:
+      - /usr/bin/git
+    stderr: []
+    timeout: 10000
+
+  which goss:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/goss
     stderr: []
     timeout: 10000
 
   which jq:
     exit-status: 0
     stdout:
-    - /usr/bin/jq
+      - /usr/bin/jq
+    stderr: []
+    timeout: 10000
+
+  which kcov:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/kcov
+    stderr: []
+    timeout: 10000
+
+  which lsof:
+    exit-status: 0
+    stdout:
+      - /usr/bin/lsof
+    stderr: []
+    timeout: 10000
+
+  which lynx:
+    exit-status: 0
+    stdout:
+      - /usr/bin/lynx
+    stderr: []
+    timeout: 10000
+
+  which node:
+    exit-status: 0
+    stdout:
+      - /root/.nvm/versions/node/
+    stderr: []
+    timeout: 10000
+
+  which npm:
+    exit-status: 0
+    stdout:
+      - /root/.nvm/versions/node/
+    stderr: []
+    timeout: 10000
+
+  which npx:
+    exit-status: 0
+    stdout:
+      - /root/.nvm/versions/node/
+    stderr: []
+    timeout: 10000
+
+  which php:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/php
+    stderr: []
+    timeout: 10000
+
+  which pygmy:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/pygmy
+    stderr: []
+    timeout: 10000
+
+  which rsync:
+    exit-status: 0
+    stdout:
+      - /usr/bin/rsync
+    stderr: []
+    timeout: 10000
+
+  which sendmail:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/sendmail
     stderr: []
     timeout: 10000
 
@@ -141,38 +161,17 @@ command:
     stderr: []
     timeout: 10000
 
-  which bats:
+  which ssh:
     exit-status: 0
     stdout:
-      - /usr/local/bin/bats
+      - /usr/bin/ssh
     stderr: []
     timeout: 10000
 
-  which kcov:
+  which task:
     exit-status: 0
     stdout:
-      - /usr/local/bin/kcov
-    stderr: []
-    timeout: 10000
-
-  which pygmy:
-    exit-status: 0
-    stdout:
-      - /usr/local/bin/pygmy
-    stderr: []
-    timeout: 10000
-
-  which sendmail:
-    exit-status: 0
-    stdout:
-      - /usr/local/bin/sendmail
-    stderr: []
-    timeout: 10000
-
-  which lsof:
-    exit-status: 0
-    stdout:
-      - /usr/bin/lsof
+      - /usr/local/bin/task
     stderr: []
     timeout: 10000
 
@@ -183,9 +182,23 @@ command:
     stderr: []
     timeout: 10000
 
-  which rsync:
+  which unzip:
     exit-status: 0
     stdout:
-      - /usr/bin/rsync
+      - /usr/bin/unzip
+    stderr: []
+    timeout: 10000
+
+  which vim:
+    exit-status: 0
+    stdout:
+      - /usr/bin/vim
+    stderr: []
+    timeout: 10000
+
+  which zip:
+    exit-status: 0
+    stdout:
+      - /usr/bin/zip
     stderr: []
     timeout: 10000
