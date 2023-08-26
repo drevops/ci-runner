@@ -71,10 +71,10 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install shfmt
 # @see https://github.com/mvdan/sh/releases
 # renovate: datasource=github-releases depName=mvdan/sh extractVersion=^v(?<version>.*)$
-ENV SHFMT_VERSION=3.7.0
+ENV SH_VERSION=3.6.0
 # hadolint ignore=SC2015
-RUN curl -L -o "/tmp/shfmt-v${SHFMT_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_linux_386" \
-  && mv "/tmp/shfmt-v${SHFMT_VERSION}" /usr/bin/shfmt \
+RUN curl -L -o "/tmp/shfmt-v${SH_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SH_VERSION}/shfmt_v${SH_VERSION}_linux_386" \
+  && mv "/tmp/shfmt-v${SH_VERSION}" /usr/bin/shfmt \
   && chmod +x /usr/bin/shfmt \
   && shfmt --version || true
 
