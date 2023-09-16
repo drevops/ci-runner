@@ -16,6 +16,7 @@ commands=(
   "docker compose version"
   "git --version"
   "goss --version"
+  "gpg --version"
   "jq --version"
   "kcov --version"
   "lsof -v"

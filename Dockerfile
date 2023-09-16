@@ -45,6 +45,7 @@ RUN apt-get update -qq \
       binutils \
       curl \
       git \
+      gnupg \
       jq \
       libcurl4 \
       libdw1 \

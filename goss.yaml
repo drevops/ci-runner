@@ -63,6 +63,13 @@ command:
     stderr: []
     timeout: 10000
 
+  which gpg:
+    exit-status: 0
+    stdout:
+      - /usr/bin/gpg
+    stderr: []
+    timeout: 10000
+
   which goss:
     exit-status: 0
     stdout:
