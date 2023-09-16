@@ -45,6 +45,7 @@ RUN apt-get update -qq \
       binutils \
       curl \
       git \
+      gnupg \
       jq \
       libcurl4 \
       libdw1 \
@@ -57,7 +58,8 @@ RUN apt-get update -qq \
       vim \
       zip \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p "$HOME/.gnupg"
 
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
@@ -98,7 +100,7 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
 # renovate: datasource=github-releases depName=docker/buildx extractVersion=^v(?<version>.*)$
 ENV BUILDX_VERSION=0.11.2
 RUN curl --silent -L "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
-    && chmod a+x ~/.docker/cli-plugins/docker-buildx \
+    && chmod a+x "$HOME/.docker/cli-plugins/docker-buildx" \
     && docker buildx version
 
 # Install composer.
