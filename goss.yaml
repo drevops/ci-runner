@@ -70,6 +70,11 @@ command:
     stderr: []
     timeout: 10000
 
+  test -d $HOME/.gnupg:
+    exit-status: 0
+    stderr: []
+    timeout: 10000
+
   which goss:
     exit-status: 0
     stdout:
