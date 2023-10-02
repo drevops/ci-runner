@@ -1,12 +1,12 @@
-# CI Builder
-Docker image used in CI as a builder container
+# CI Runner
+Docker image used in CI as a runner container
 
-[![CircleCI](https://circleci.com/gh/drevops/ci-builder.svg?style=shield)](https://circleci.com/gh/drevops/ci-builder)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/drevops/ci-builder)
-[![DockerHub](https://img.shields.io/docker/pulls/drevops/ci-builder.svg)](https://hub.docker.com/r/drevops/ci-builder/)
-![LICENSE](https://img.shields.io/github/license/drevops/ci-builder)
+[![CircleCI](https://circleci.com/gh/drevops/ci-runner.svg?style=shield)](https://circleci.com/gh/drevops/ci-runner)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/drevops/ci-runner)
+[![DockerHub](https://img.shields.io/docker/pulls/drevops/ci-runner.svg)](https://hub.docker.com/r/drevops/ci-runner/)
+![LICENSE](https://img.shields.io/github/license/drevops/ci-runner)
 
-It contains several tools required to run Docker-based builds (in alphabetical order):
+It contains several tools required to run Docker-based CI builds (in alphabetical order):
 - [Ahoy](https://github.com/ahoy-cli/ahoy) - workflow helper
 - [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
 - [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)
@@ -31,13 +31,13 @@ It contains several tools required to run Docker-based builds (in alphabetical o
 Make sure to **always** pin the version of this image to the tag:
 
 ```
-drevops/ci-builder:23.8.1
+drevops/ci-runner:23.8.1
 ```
 
 For testing purposes, you can use the `canary` tag:
 
 ```
-drevops/ci-builder:canary
+drevops/ci-runner:canary
 ```
 
 ## Maintenance and releasing
