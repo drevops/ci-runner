@@ -166,7 +166,7 @@ RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/
 # Install Task.
 # @see https://github.com/go-task/task/releases
 # renovate: datasource=github-releases depName=go-task/task extractVersion=^v(?<version>.*)$
-ENV TASK_VERSION=3.30.1
+ENV TASK_VERSION=3.31.0
 RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "v$TASK_VERSION"
 
 # Install a stub for pygmy.
