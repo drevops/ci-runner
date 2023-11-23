@@ -85,7 +85,7 @@ RUN curl -L -o "/tmp/shfmt-v${SH_VERSION}" "https://github.com/mvdan/sh/releases
 # @see https://github.com/docker/compose/releases
 ENV DOCKER_VERSION=24.0.5
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^v(?<version>.*)$
-ENV DOCKER_COMPOSE_VERSION=2.23.2
+ENV DOCKER_COMPOSE_VERSION=2.23.3
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
     && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
     && mv /tmp/docker/* /usr/bin \
