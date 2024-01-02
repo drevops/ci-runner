@@ -169,6 +169,14 @@ RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/
 ENV TASK_VERSION=3.33.1
 RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "v$TASK_VERSION"
 
+# Install Codecov reporter.
+# @see https://github.com/codecov/uploader/releases
+# renovate: datasource=github-releases depName=codecov/uploader extractVersion=^v(?<version>.*)$
+ENV CODECOV_VERSION=0.7.1
+RUN curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/releases/download/v${CODECOV_VERSION}/codecov-linux" \
+  && chmod +x /usr/local/bin/codecov \
+  && codecov --version
+
 # Install a stub for pygmy.
 # Some frameworks may require presence of tools that are not required in CI container.
 RUN ln -s /usr/bin/true /usr/local/bin/pygmy \

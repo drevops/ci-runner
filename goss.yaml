@@ -35,6 +35,13 @@ command:
     stderr: []
     timeout: 10000
 
+  which codecov:
+    exit-status: 0
+    stdout:
+      - /usr/local/bin/codecov
+    stderr: []
+    timeout: 10000
+
   which composer:
     exit-status: 0
     stdout:

@@ -10,6 +10,7 @@ commands=(
   "aspell --version"
   "bats --version"
   "composer --version"
+  "codecov --version"
   "curl --version"
   "docker --version"
   "docker buildx version"
