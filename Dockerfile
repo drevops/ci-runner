@@ -172,7 +172,7 @@ RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/
 # Install Codecov reporter.
 # @see https://github.com/codecov/uploader/releases
 # renovate: datasource=github-releases depName=codecov/uploader extractVersion=^v(?<version>.*)$
-ENV CODECOV_VERSION=0.7.1
+ENV CODECOV_VERSION=0.7.2
 RUN curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/releases/download/v${CODECOV_VERSION}/codecov-linux" \
   && chmod +x /usr/local/bin/codecov \
   && codecov --version
