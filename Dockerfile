@@ -52,6 +52,7 @@ RUN apt-get update -qq \
       lsof \
       lynx \
       openssh-client \
+      procps \
       rsync \
       tree \
       unzip \

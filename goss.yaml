@@ -145,6 +145,13 @@ command:
     stderr: []
     timeout: 10000
 
+  which ps:
+    exit-status: 0
+    stdout:
+      - /usr/bin/ps
+    stderr: []
+    timeout: 10000
+
   which pygmy:
     exit-status: 0
     stdout:
