@@ -148,7 +148,7 @@ RUN curl -fsSL https://goss.rocks/install | sh \
 # Install Bats.
 # @see https://github.com/bats-core/bats-core/releases
 # renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^v(?<version>.*)$
-ENV BATS_VERSION=1.10.0
+ENV BATS_VERSION=1.11.0
 # hadolint ignore=DL3003
 RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/v${BATS_VERSION}.tar.gz" \
     && mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 \
