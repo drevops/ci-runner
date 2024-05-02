@@ -224,7 +224,5 @@ command:
 
   php -i | grep -Fq "PCOV support => Enabled":
     exit-status: 0
-    stdout:
-      - PCOV support => Enabled
     stderr: [ ]
     timeout: 10000
