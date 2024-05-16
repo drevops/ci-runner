@@ -81,6 +81,9 @@ This image is built by DockerHub via an automated build and tagged as follows:
  - `latest` - when release tag is published on GitHub.
  - `canary` - on every push to `main` branch
 
+---
+Repository created using https://getscaffold.dev/ project scaffold template
+
 ### Dependencies update
 
 Renovation bot is used to update dependencies. It creates a PR with the changes
