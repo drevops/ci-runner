@@ -3,7 +3,7 @@
   <img width=200px height=200px src="https://placehold.jp/000000/ffffff/200x200.png?text=CI+runner&css=%7B%22border-radius%22%3A%22%20100px%22%7D" alt="CI runner"></a>
 </p>
 
-<h1 align="center">CI runner</h1>
+<h1 align="center">Docker image for CI runner</h1>
 
 <div align="center">
 
@@ -21,11 +21,10 @@
 
 ---
 
-<p align="center"> Docker image used in CI as a runner container
-    <br>
-</p>
+Based on Debian `php:8.3-cli-bookworm`.
 
-It contains several tools required to run Docker-based CI builds (in alphabetical order):
+## Included
+
 - [Ahoy](https://github.com/ahoy-cli/ahoy) - workflow helper
 - [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
 - [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)
@@ -81,11 +80,11 @@ This image is built by DockerHub via an automated build and tagged as follows:
  - `latest` - when release tag is published on GitHub.
  - `canary` - on every push to `main` branch
 
----
-Repository created using https://getscaffold.dev/ project scaffold template
-
 ### Dependencies update
 
-Renovation bot is used to update dependencies. It creates a PR with the changes
+Renovate bot is used to update dependencies. It creates a PR with the changes
 and automatically merges it if CI passes. These changes are then released as
 a `canary` version.
+
+---
+Repository created using https://getscaffold.dev/ project scaffold template
