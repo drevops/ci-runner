@@ -33,6 +33,13 @@ RUN curl -L -o "/tmp/kcov.tar.gz" "https://github.com/SimonKagstrom/kcov/archive
 
 FROM php:8.3-cli-bookworm
 
+# Upgrade all installed packages and clean up.
+# hadolint ignore=DL3005
+RUN apt-get update -qq \
+    && apt-get dist-upgrade -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" maintainer="Alex Skrypnyk <alex@drevops.com>"
 
 # Ensure temporary files are not retained in the image.
