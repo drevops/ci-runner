@@ -36,7 +36,7 @@ FROM php:8.3-cli-bookworm
 # Upgrade all installed packages and clean up.
 # hadolint ignore=DL3005
 RUN apt-get update -qq \
-    && apt-get dist-upgrade -y \
+    && apt-get upgrade -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
