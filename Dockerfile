@@ -19,7 +19,7 @@ RUN apt-get update -qq \
 # Install kcov.
 # @see https://github.com/SimonKagstrom/kcov/releases
 # renovate: datasource=github-releases depName=SimonKagstrom/kcov extractVersion=^v(?<version>.*)$
-ENV KCOV_VERSION=42
+ENV KCOV_VERSION=43
 # hadolint ignore=DL3003
 RUN curl -L -o "/tmp/kcov.tar.gz" "https://github.com/SimonKagstrom/kcov/archive/refs/tags/v${KCOV_VERSION}.tar.gz" \
     && mkdir -p /tmp/kcov \
