@@ -81,7 +81,7 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 # Install shfmt
 # @see https://github.com/mvdan/sh/releases
 # renovate: datasource=github-releases depName=mvdan/sh extractVersion=^v(?<version>.*)$
-ENV SH_VERSION=3.8.0
+ENV SH_VERSION=3.9.0
 # hadolint ignore=SC2015
 RUN curl -L -o "/tmp/shfmt-v${SH_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SH_VERSION}/shfmt_v${SH_VERSION}_linux_386" \
   && mv "/tmp/shfmt-v${SH_VERSION}" /usr/bin/shfmt \
