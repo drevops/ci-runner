@@ -87,4 +87,4 @@ and automatically merges it if CI passes. These changes are then released as
 a `canary` version.
 
 ---
-Repository created using https://getscaffold.dev/ project scaffold template
+_This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
