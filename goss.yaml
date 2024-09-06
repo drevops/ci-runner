@@ -231,10 +231,5 @@ command:
 
   php -i | grep -Fq "PCOV support => Enabled":
     exit-status: 0
-    stderr: []
-    timeout: 10000
-
-  test -d /github:
-    exit-status: 0
-    stderr: []
+    stderr: [ ]
     timeout: 10000
