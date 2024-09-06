@@ -35,7 +35,7 @@ FROM php:8.3-cli-bookworm
 
 # Link the root directory to /github.
 # @see https://github.com/actions/runner/issues/863
-RUN ln -s /root /github
+RUN mkdir -p /github && ln -s /root /github/home
 
 # Upgrade all installed packages and clean up.
 # hadolint ignore=DL3005
