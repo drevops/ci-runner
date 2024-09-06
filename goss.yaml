@@ -234,7 +234,7 @@ command:
     stderr: []
     timeout: 10000
 
-  test -d /github/home:
+  test -d /github:
     exit-status: 0
     stderr: []
     timeout: 10000
