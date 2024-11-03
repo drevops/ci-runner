@@ -1,4 +1,4 @@
-FROM php:8.3-cli-bookworm as builder
+FROM php:8.3-cli-bookworm AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq \
@@ -122,7 +122,7 @@ RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COM
     && chmod +x /usr/local/bin/composer \
     && composer --version \
     && composer clear-cache
-ENV PATH /root/.composer/vendor/bin:$PATH
+ENV PATH=/root/.composer/vendor/bin:$PATH
 
 # Install NVM and NodeJS.
 # @see https://github.com/nvm-sh/nvm/releases
@@ -141,7 +141,7 @@ RUN . "$HOME/.nvm/nvm.sh" \
 	&& nvm alias default "${SHIPPABLE_NODE_VERSION}" \
 	&& nvm use default \
 	&& npm --version
-ENV PATH ${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
+ENV PATH=${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 
 # Install Goss.
 # @see https://github.com/aelsabbahy/goss
