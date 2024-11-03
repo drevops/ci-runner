@@ -1,15 +1,19 @@
 version: 2
+
 jobs:
   build:
     docker:
-      - image: php:8-cli
+      - image: php:8.3-cli-bookworm
         environment:
           GOSS_FILES_STRATEGY: cp
-          DOCKER_VERSION: 24.0.5
+          DOCKER_VERSION: 27.3.1
     working_directory: ~/repo
+
     steps:
       - checkout
+
       - setup_remote_docker
+
       - run:
           name: Install Docker
           command: |
@@ -17,21 +21,27 @@ jobs:
             && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
             && mv /tmp/docker/* /usr/bin \
             && docker --version
+
       - run:
           name: Lint Dockerfile
           command: docker run --rm -i hadolint/hadolint < Dockerfile
+
       - run:
           name: Install goss
           command: curl -fsSL https://goss.rocks/install | sh && goss --version
+
       - run:
           name: Build image
           command: docker build -t drevops/ci-runner:test-ci .
+
       - run:
           name: Show images information
           command: docker images
+
       - run:
           name: Test image
           command: dgoss run -i drevops/ci-runner:test-ci
+
       - run:
           name: Show versions
           command: ./versions.sh "drevops/ci-runner:test-ci"
