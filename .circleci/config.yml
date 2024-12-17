@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: php:8.3-cli-bookworm
+      - image: php:8.4-cli-bookworm
         environment:
           GOSS_FILES_STRATEGY: cp
           DOCKER_VERSION: 27.3.1
