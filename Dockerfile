@@ -106,7 +106,7 @@ RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 # renovate: datasource=github-releases depName=docker/buildx extractVersion=^v(?<version>.*)$
-ENV BUILDX_VERSION=0.19.2
+ENV BUILDX_VERSION=0.19.3
 RUN curl --silent -L "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx \
     && chmod a+x "$HOME/.docker/cli-plugins/docker-buildx" \
     && docker buildx version
