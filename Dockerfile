@@ -166,8 +166,8 @@ RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archiv
 # Install Ahoy.
 # @see https://github.com/ahoy-cli/ahoy/releases
 # renovate: datasource=github-releases depName=ahoy-cli/ahoy extractVersion=^v(?<version>.*)$
-ENV AHOY_VERSION=2.2.0
-RUN curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-$(uname -s)-amd64" \
+ENV AHOY_VERSION=2.3.0
+RUN set -x && curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-$(uname -s)-amd64" \
   && chmod +x /usr/local/bin/ahoy \
   && ahoy --version
 
