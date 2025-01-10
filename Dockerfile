@@ -187,7 +187,7 @@ RUN curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/rel
 
 # Install PCOV
 # @see https://pecl.php.net/package/pcov
-ENV CODECOV_VERSION=1.0.11
+ENV CODECOV_VERSION=1.0.12
 RUN pecl install "pcov-${CODECOV_VERSION}" && docker-php-ext-enable pcov && php -m
 
 # Install a stub for pygmy.
