@@ -49,7 +49,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 Make sure to **always** pin the version of this image to the tag:
 
 ```
-drevops/ci-runner:23.10.0
+drevops/ci-runner:25.1.0
 ```
 
 For testing purposes, you can use the `canary` tag:
