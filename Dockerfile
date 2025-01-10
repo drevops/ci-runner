@@ -90,8 +90,8 @@ RUN curl -L -o "/tmp/shfmt-v${SH_VERSION}" "https://github.com/mvdan/sh/releases
 
 # Install Docker and Docker Compose V2 (docker compose).
 # @see https://download.docker.com/linux/static/stable/x86_64
+ENV DOCKER_VERSION=27.4.1
 # @see https://github.com/docker/compose/releases
-ENV DOCKER_VERSION=27.3.1
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^v(?<version>.*)$
 ENV DOCKER_COMPOSE_VERSION=2.32.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
