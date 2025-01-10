@@ -1,4 +1,4 @@
-FROM php:8.3-cli-bookworm AS builder
+FROM php:8.4-cli-bookworm AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq \
@@ -31,7 +31,7 @@ RUN curl -L -o "/tmp/kcov.tar.gz" "https://github.com/SimonKagstrom/kcov/archive
     && cmake --build . \
     && cmake --build . --target install
 
-FROM php:8.3-cli-bookworm
+FROM php:8.4-cli-bookworm
 
 # Upgrade all installed packages and clean up.
 # hadolint ignore=DL3005
@@ -187,7 +187,7 @@ RUN curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/rel
 
 # Install PCOV
 # @see https://pecl.php.net/package/pcov
-ENV CODECOV_VERSION=1.0.11
+ENV CODECOV_VERSION=1.0.12
 RUN pecl install "pcov-${CODECOV_VERSION}" && docker-php-ext-enable pcov && php -m
 
 # Install a stub for pygmy.
