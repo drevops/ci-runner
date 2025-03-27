@@ -222,6 +222,14 @@ command:
     stderr: []
     timeout: 10000
 
+  which yarn:
+    exit-status: 0
+    stdout:
+      - /root/.nvm/versions/node
+      - /bin/yarn
+    stderr: []
+    timeout: 10000
+
   which zip:
     exit-status: 0
     stdout:
