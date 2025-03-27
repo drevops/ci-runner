@@ -90,7 +90,7 @@ RUN curl -L -o "/tmp/shfmt-v${SH_VERSION}" "https://github.com/mvdan/sh/releases
 
 # Install Docker and Docker Compose V2 (docker compose).
 # @see https://download.docker.com/linux/static/stable/x86_64
-ENV DOCKER_VERSION=27.4.1
+ENV DOCKER_VERSION=28.0.4
 # @see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^v(?<version>.*)$
 ENV DOCKER_COMPOSE_VERSION=2.34.0
@@ -113,7 +113,7 @@ RUN curl --silent -L "https://github.com/docker/buildx/releases/download/v${BUIL
 
 # Install composer.
 # @see https://getcomposer.org/download
-ENV COMPOSER_VERSION=2.8.2
+ENV COMPOSER_VERSION=2.8.6
 ENV COMPOSER_SHA=dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6
 ENV COMPOSER_ALLOW_SUPERUSER=1
 # hadolint ignore=DL4006
@@ -126,7 +126,7 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 
 # Install NVM and NodeJS.
 # @see https://github.com/nvm-sh/nvm/releases
-ENV NVM_VERSION=v0.40.1
+ENV NVM_VERSION=v0.40.2
 ENV NVM_DIR=/root/.nvm
 # hadolint ignore=DL4006,SC1091
 RUN mkdir -p "${NVM_DIR}" \
@@ -134,7 +134,7 @@ RUN mkdir -p "${NVM_DIR}" \
   && . "$HOME/.nvm/nvm.sh" \
   && nvm --version
 
-ENV SHIPPABLE_NODE_VERSION=v22.11.0
+ENV SHIPPABLE_NODE_VERSION=v23.10.0
 # hadolint ignore=SC1091
 RUN . "$HOME/.nvm/nvm.sh" \
 	&& nvm install "${SHIPPABLE_NODE_VERSION}" \
@@ -144,7 +144,7 @@ RUN . "$HOME/.nvm/nvm.sh" \
 ENV PATH=${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 
 # Install Goss.
-# @see https://github.com/aelsabbahy/goss
+# @see https://github.com/goss-org/goss/releases
 # renovate: datasource=github-releases depName=aelsabbahy/goss extractVersion=^(?<version>.*)$
 ENV GOSS_VER=v0.4.9
 ENV GOSS_FILES_STRATEGY=cp
