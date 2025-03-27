@@ -34,6 +34,7 @@ commands=(
   "tree --version"
   "unzip -v"
   "vim --version"
+  "yarn --version"
   "zip --version"
 )
 

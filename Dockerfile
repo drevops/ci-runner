@@ -143,6 +143,12 @@ RUN . "$HOME/.nvm/nvm.sh" \
 	&& npm --version
 ENV PATH=${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 
+# Install Yarn.
+# renovate: datasource=npm depName=yarn extractVersion=^(?<version>.*)$
+ENV YARN_VERSION=1.22.22
+RUN npm install --global "yarn@${YARN_VERSION}" \
+  && yarn --version
+
 # Install Goss.
 # @see https://github.com/aelsabbahy/goss
 # renovate: datasource=github-releases depName=aelsabbahy/goss extractVersion=^(?<version>.*)$
