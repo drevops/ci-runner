@@ -42,6 +42,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [shfmt](https://github.com/mvdan/sh) - a shell parser, formatter, and interpreter.
 - [Task](https://github.com/go-task/task) - workflow helper
 - vim
+- [yarn](https://yarnpkg.com/)
 - zip/unzip
 
 ## Usage
