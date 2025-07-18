@@ -102,6 +102,7 @@ ENV DOCKER_COMPOSE_VERSION=2.38.2
 RUN curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" && \
     tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" && \
     mv /tmp/docker/* /usr/bin && \
+    rm -rf /tmp/docker* && \
     docker --version && \
     mkdir -p "$HOME/.docker/cli-plugins" && \
     curl -sSL "https://github.com/docker/compose/releases/download/v${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" && \
