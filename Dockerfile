@@ -123,10 +123,12 @@ RUN version=0.25.0 && \
 ENV COMPOSER_ALLOW_SUPERUSER=1
 # hadolint ignore=DL4006
 RUN version=2.8.8 && \
-    sha=dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6 && \
-    curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${version}/composer.phar" && \
-    echo "${sha} /usr/local/bin/composer" | sha256sum && \
-    chmod +x /usr/local/bin/composer && \
+    curl -sS https://getcomposer.org/download/${version}/composer.phar.sha256sum | awk '{ print $1, "composer.phar" }' > composer.phar.sha256sum && \
+    curl -sS -o composer.phar https://getcomposer.org/download/${version}/composer.phar && \
+    sha256sum -c composer.phar.sha256sum && \
+    chmod +x composer.phar && \
+    mv composer.phar /usr/local/bin/composer && \
+    rm composer.phar.sha256sum && \
     composer --version && \
     composer clear-cache
 ENV PATH=/root/.composer/vendor/bin:$PATH
