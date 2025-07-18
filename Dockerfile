@@ -93,19 +93,22 @@ RUN version=3.12.0 && \
     chmod +x /usr/local/bin/shfmt && \
     shfmt --version || true
 
-# Install Docker and Docker Compose V2 (docker compose).
+# Install Docker.
 # @see https://download.docker.com/linux/static/stable/x86_64
-# @see https://github.com/docker/compose/releases
-# renovate: datasource=github-releases depName=docker/compose extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=moby/moby extractVersion=^v(?<version>.*)$
 RUN version=28.1.1 && \
-    compose_version=2.38.2 && \
     curl -L -o "/tmp/docker-${version}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${version}.tgz" && \
     tar -xz -C /tmp -f "/tmp/docker-${version}.tgz" && \
     mv /tmp/docker/* /usr/bin && \
     rm -rf /tmp/docker* && \
-    docker --version && \
+    docker --version
+
+# Install Docker Compose V2 (docker compose).
+# @see https://github.com/docker/compose/releases
+# renovate: datasource=github-releases depName=docker/compose extractVersion=^v(?<version>.*)$
+RUN version=2.38.2 && \
     mkdir -p "$HOME/.docker/cli-plugins" && \
-    curl -sSL "https://github.com/docker/compose/releases/download/v${compose_version}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" && \
+    curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" && \
     chmod +x "$HOME/.docker/cli-plugins/docker-compose" && \
     docker compose version
 
