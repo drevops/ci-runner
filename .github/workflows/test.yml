@@ -1,0 +1,58 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      GOSS_FILES_STRATEGY: cp
+      DOCKER_VERSION: 27.3.1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install Docker
+        run: |
+          curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
+          && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
+          && sudo mv /tmp/docker/* /usr/bin \
+          && docker --version
+
+      - name: Lint Dockerfile
+        run: docker run --rm -i hadolint/hadolint < Dockerfile
+
+      - name: Build image
+        run: docker build -t drevops/ci-runner:test-ci .
+
+      - name: Show images information
+        run: docker images
+
+      - name: Install goss
+        run: curl -fsSL https://goss.rocks/install | sh && goss --version
+
+      - name: Test image
+        run: dgoss run -i drevops/ci-runner:test-ci
+
+      - name: Show versions
+        run: ./versions.sh "drevops/ci-runner:test-ci"
+      
+      - name: Generate versions file
+        run: ./versions.sh "drevops/ci-runner:test-ci" > versions.txt
+      
+      - name: Upload versions artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: versions
+          path: versions.txt
