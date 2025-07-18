@@ -204,7 +204,7 @@ RUN version=0.8.0 && \
 
 # Install PCOV
 # @see https://pecl.php.net/package/pcov
-# renovate: datasource=pecl depName=pcov extractVersion=^(?<version>.*)$
+# renovate: datasource=github-releases depName=krakjoe/pcov extractVersion=^v(?<version>.*)$
 RUN version=1.0.12 && \
     pecl install "pcov-${version}" && \
     docker-php-ext-enable pcov && \
