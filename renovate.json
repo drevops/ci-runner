@@ -3,10 +3,11 @@
   "automerge": true,
   "dependencyDashboard": true,
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": [
         "(^|/)Dockerfile$",
         "(^|/)Dockerfile\\.[^/]*$"
