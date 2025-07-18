@@ -7,9 +7,9 @@
 
 <div align="center">
 
+[![Test](https://github.com/drevops/ci-runner/actions/workflows/test.yml/badge.svg)](https://github.com/drevops/ci-runner/actions/workflows/test.yml)
 [![GitHub Issues](https://img.shields.io/github/issues/DrevOps/ci-runner.svg)](https://github.com/DrevOps/ci-runner/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/DrevOps/ci-runner.svg)](https://github.com/DrevOps/ci-runner/pulls)
-[![CircleCI](https://circleci.com/gh/drevops/ci-runner.svg?style=shield)](https://circleci.com/gh/drevops/ci-runner)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/drevops/ci-runner)
 ![LICENSE](https://img.shields.io/github/license/drevops/ci-runner)
 ![Renovate](https://img.shields.io/badge/renovate-enabled-green?logo=renovatebot)
