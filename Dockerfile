@@ -138,7 +138,7 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 
 # Install NodeJS.
 # @see https://nodejs.org/download/release/
-# renovate: datasource=node versioning=node extractVersion=^v(?<version>.*)$
+# renovate: datasource=node depName=node versioning=node extractVersion=^v(?<version>.*)$
 RUN version=v23.11.0 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="x64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
