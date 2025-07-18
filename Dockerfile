@@ -139,7 +139,7 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 # Install NodeJS.
 # @see https://nodejs.org/download/release/
 # renovate: datasource=node depName=node versioning=node extractVersion=^v(?<version>.*)$
-RUN version=23.11.0 && \
+RUN version=23.11.1 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="x64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
     curl -L -o "/tmp/node-${version}-linux-${arch}.tar.xz" "https://nodejs.org/download/release/v${version}/node-v${version}-linux-${arch}.tar.xz" && \
