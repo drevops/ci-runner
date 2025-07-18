@@ -130,29 +130,20 @@ RUN curl -L -o "/usr/local/bin/composer" "https://getcomposer.org/download/${COM
     composer clear-cache
 ENV PATH=/root/.composer/vendor/bin:$PATH
 
-# Install NVM and NodeJS.
-# @see https://github.com/nvm-sh/nvm/releases
-ENV NVM_VERSION=v0.40.3
-ENV NVM_DIR=/root/.nvm
-# hadolint ignore=DL4006,SC1091
-RUN mkdir -p "${NVM_DIR}" && \
-    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash && \
-    . "$HOME/.nvm/nvm.sh" && \
-    nvm --version
-
-ENV SHIPPABLE_NODE_VERSION=v23.11.0
-# hadolint ignore=SC1091
-RUN . "$HOME/.nvm/nvm.sh" && \
-    nvm install "${SHIPPABLE_NODE_VERSION}" && \
-    nvm alias default "${SHIPPABLE_NODE_VERSION}" && \
-    nvm use default && \
+# Install NodeJS.
+# @see https://nodejs.org/download/release/
+ENV NODE_VERSION=v23.11.0
+RUN curl -L -o "/tmp/node-${NODE_VERSION}-linux-x64.tar.xz" "https://nodejs.org/download/release/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.xz" && \
+    tar -xJ -C /usr/local --strip-components=1 -f "/tmp/node-${NODE_VERSION}-linux-x64.tar.xz" && \
+    rm -rf "/tmp/node-${NODE_VERSION}-linux-x64.tar.xz" && \
+    node --version && \
     npm --version
-ENV PATH=${NVM_DIR}/versions/node/${SHIPPABLE_NODE_VERSION}/bin:$PATH
 
 # Install Yarn.
 # renovate: datasource=npm depName=yarn extractVersion=^(?<version>.*)$
 ENV YARN_VERSION=1.22.22
-RUN npm install --global "yarn@${YARN_VERSION}" && \
+RUN npm install --global "yarn@${YARN_VERSION}" --no-audit --no-fund && \
+    npm cache clean --force && \
     yarn --version
 
 # Install Goss.
