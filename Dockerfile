@@ -156,9 +156,13 @@ RUN version=1.22.22 && \
 # @see https://github.com/goss-org/goss/releases
 # renovate: datasource=github-releases depName=aelsabbahy/goss extractVersion=^(?<version>.*)$
 ENV GOSS_FILES_STRATEGY=cp
-# hadolint ignore=DL4006,SC2034
-RUN GOSS_VER=v0.4.9 && \
-    curl -fsSL https://goss.rocks/install | sh && \
+# See https://github.com/goss-org/goss/releases for release versions
+# hadolint ignore=DL4006
+RUN version=v0.4.8 && \
+    curl -L "https://github.com/goss-org/goss/releases/download/${version}/goss-linux-amd64" -o /usr/local/bin/goss && \
+    chmod +rx /usr/local/bin/goss && \
+    curl -L "https://github.com/goss-org/goss/releases/download/${version}/dgoss" -o /usr/local/bin/dgoss && \
+    chmod +rx /usr/local/bin/dgoss && \
     goss --version
 
 # Install Bats.
