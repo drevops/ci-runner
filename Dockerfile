@@ -18,7 +18,7 @@ RUN apt-get update -qq && \
 
 # Install kcov.
 # @see https://github.com/SimonKagstrom/kcov/releases
-# renovate: datasource=github-releases depName=SimonKagstrom/kcov extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=SimonKagstrom/kcov extractVersion=^(?<version>.*)$
 # hadolint ignore=DL3003
 RUN version=43 && \
     curl -L -o "/tmp/kcov.tar.gz" "https://github.com/SimonKagstrom/kcov/archive/refs/tags/v${version}.tar.gz" && \
@@ -75,7 +75,7 @@ RUN apt-get update -qq && \
 
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
-# renovate: datasource=github-releases depName=koalaman/shellcheck extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=koalaman/shellcheck extractVersion=^(?<version>.*)$
 RUN version=0.10.0 && \
     curl -L -o "/tmp/shellcheck-v${version}.tar.xz" "https://github.com/koalaman/shellcheck/releases/download/v${version}/shellcheck-v${version}.linux.x86_64.tar.xz" && \
     tar --xz -xvf "/tmp/shellcheck-v${version}.tar.xz" && \
@@ -85,7 +85,7 @@ RUN version=0.10.0 && \
 
 # Install shfmt
 # @see https://github.com/mvdan/sh/releases
-# renovate: datasource=github-releases depName=mvdan/sh extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=mvdan/sh extractVersion=^(?<version>.*)$
 # hadolint ignore=SC2015
 RUN version=3.12.0 && \
     curl -L -o "/tmp/shfmt-v${version}" "https://github.com/mvdan/sh/releases/download/v${version}/shfmt_v${version}_linux_amd64" && \
@@ -95,7 +95,7 @@ RUN version=3.12.0 && \
 
 # Install Docker.
 # @see https://download.docker.com/linux/static/stable/x86_64
-# renovate: datasource=github-releases depName=moby/moby extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=moby/moby extractVersion=^(?<version>.*)$
 RUN version=28.1.1 && \
     curl -L -o "/tmp/docker-${version}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${version}.tgz" && \
     tar -xz -C /tmp -f "/tmp/docker-${version}.tgz" && \
@@ -105,7 +105,7 @@ RUN version=28.1.1 && \
 
 # Install Docker Compose V2 (docker compose).
 # @see https://github.com/docker/compose/releases
-# renovate: datasource=github-releases depName=docker/compose extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=docker/compose extractVersion=^(?<version>.*)$
 RUN version=2.38.2 && \
     mkdir -p "$HOME/.docker/cli-plugins" && \
     curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" && \
@@ -114,7 +114,7 @@ RUN version=2.38.2 && \
 
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
-# renovate: datasource=github-releases depName=docker/buildx extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=docker/buildx extractVersion=^(?<version>.*)$
 RUN version=0.25.0 && \
     curl --silent -L "https://github.com/docker/buildx/releases/download/v${version}/buildx-v${version}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx && \
     chmod a+x "$HOME/.docker/cli-plugins/docker-buildx" && \
@@ -139,10 +139,10 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 # Install NodeJS.
 # @see https://nodejs.org/download/release/
 # renovate: datasource=node depName=node versioning=node extractVersion=^v(?<version>.*)$
-RUN version=v23.11.0 && \
+RUN version=23.11.0 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="x64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
-    curl -L -o "/tmp/node-${version}-linux-${arch}.tar.xz" "https://nodejs.org/download/release/${version}/node-${version}-linux-${arch}.tar.xz" && \
+    curl -L -o "/tmp/node-${version}-linux-${arch}.tar.xz" "https://nodejs.org/download/release/v${version}/node-v${version}-linux-${arch}.tar.xz" && \
     tar -xJ -C /usr/local --strip-components=1 -f "/tmp/node-${version}-linux-${arch}.tar.xz" && \
     rm -rf "/tmp/node-${version}-linux-${arch}.tar.xz" && \
     node --version && \
@@ -157,20 +157,20 @@ RUN version=1.22.22 && \
 
 # Install Goss.
 # @see https://github.com/goss-org/goss/releases
-# renovate: datasource=github-releases depName=aelsabbahy/goss extractVersion=^(?<version>.*)$
+# renovate: datasource=github-releases depName=aelsabbahy/goss extractVersion=^v(?<version>.*)$
 ENV GOSS_FILES_STRATEGY=cp
 # See https://github.com/goss-org/goss/releases for release versions
 # hadolint ignore=DL4006
-RUN version=v0.4.9 && \
-    curl -L "https://github.com/goss-org/goss/releases/download/${version}/goss-linux-amd64" -o /usr/local/bin/goss && \
+RUN version=0.4.9 && \
+    curl -L "https://github.com/goss-org/goss/releases/download/v${version}/goss-linux-amd64" -o /usr/local/bin/goss && \
     chmod +rx /usr/local/bin/goss && \
-    curl -L "https://github.com/goss-org/goss/releases/download/${version}/dgoss" -o /usr/local/bin/dgoss && \
+    curl -L "https://github.com/goss-org/goss/releases/download/v${version}/dgoss" -o /usr/local/bin/dgoss && \
     chmod +rx /usr/local/bin/dgoss && \
     goss --version
 
 # Install Bats.
 # @see https://github.com/bats-core/bats-core/releases
-# renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^(?<version>.*)$
 # hadolint ignore=DL3003
 RUN version=1.12.0 && \
     curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/v${version}.tar.gz" && \
@@ -182,7 +182,7 @@ RUN version=1.12.0 && \
 
 # Install Ahoy.
 # @see https://github.com/ahoy-cli/ahoy/releases
-# renovate: datasource=github-releases depName=ahoy-cli/ahoy extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=ahoy-cli/ahoy extractVersion=^(?<version>.*)$
 RUN version=2.4.0 && \
     set -x && curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${version}/ahoy-bin-$(uname -s)-amd64" && \
     chmod +x /usr/local/bin/ahoy && \
@@ -190,13 +190,13 @@ RUN version=2.4.0 && \
 
 # Install Task.
 # @see https://github.com/go-task/task/releases
-# renovate: datasource=github-releases depName=go-task/task extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=go-task/task extractVersion=^(?<version>.*)$
 RUN version=3.44.0 && \
     sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "v$version"
 
 # Install Codecov reporter.
 # @see https://github.com/codecov/uploader/releases
-# renovate: datasource=github-releases depName=codecov/uploader extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=codecov/uploader extractVersion=^(?<version>.*)$
 RUN version=0.8.0 && \
     curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/releases/download/v${version}/codecov-linux" && \
     chmod +x /usr/local/bin/codecov && \
@@ -204,7 +204,7 @@ RUN version=0.8.0 && \
 
 # Install PCOV
 # @see https://pecl.php.net/package/pcov
-# renovate: datasource=github-releases depName=krakjoe/pcov extractVersion=^v(?<version>.*)$
+# renovate: datasource=github-releases depName=krakjoe/pcov extractVersion=^(?<version>.*)$
 RUN version=1.0.12 && \
     pecl install "pcov-${version}" && \
     docker-php-ext-enable pcov && \
