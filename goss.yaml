@@ -120,21 +120,21 @@ command:
   which node:
     exit-status: 0
     stdout:
-      - /root/.nvm/versions/node/
+      - /usr/local/bin/node
     stderr: []
     timeout: 10000
 
   which npm:
     exit-status: 0
     stdout:
-      - /root/.nvm/versions/node/
+      - /usr/local/bin/npm
     stderr: []
     timeout: 10000
 
   which npx:
     exit-status: 0
     stdout:
-      - /root/.nvm/versions/node/
+      - /usr/local/bin/npx
     stderr: []
     timeout: 10000
 
@@ -176,14 +176,14 @@ command:
   which shellcheck:
     exit-status: 0
     stdout:
-      - /usr/bin/shellcheck
+      - /usr/local/bin/shellcheck
     stderr: []
     timeout: 10000
 
   which shfmt:
     exit-status: 0
     stdout:
-      - /usr/bin/shfmt
+      - /usr/local/bin/shfmt
     stderr: []
     timeout: 10000
 
@@ -225,8 +225,7 @@ command:
   which yarn:
     exit-status: 0
     stdout:
-      - /root/.nvm/versions/node
-      - /bin/yarn
+      - /usr/local/bin/yarn
     stderr: []
     timeout: 10000
 
