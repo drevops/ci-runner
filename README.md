@@ -59,6 +59,41 @@ For testing purposes, you can use the `canary` tag:
 drevops/ci-runner:canary
 ```
 
+## Testing
+
+The image includes [Goss](https://github.com/aelsabbahy/goss) for environment testing. To run tests locally using dgoss:
+
+```bash
+# Build the image
+docker build -t drevops/ci-runner:test-ci .
+
+# Run tests
+dgoss run -i drevops/ci-runner:test-ci
+```
+
+**Note for ARM64 systems (Apple Silicon):** You'll need to install the correct goss binaries:
+
+```bash
+# Create bin directory
+mkdir -p ~/bin
+
+# Download macOS ARM64 goss binary for local use
+curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-darwin-arm64" -o ~/bin/goss
+chmod +x ~/bin/goss
+
+# Download Linux AMD64 goss binary for container testing
+curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-linux-amd64" -o ~/bin/goss-linux-amd64
+chmod +x ~/bin/goss-linux-amd64
+
+# Download dgoss wrapper
+curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/dgoss" -o ~/bin/dgoss
+chmod +x ~/bin/dgoss
+
+# Run tests with correct binary
+export GOSS_PATH=~/bin/goss-linux-amd64
+~/bin/dgoss run -i drevops/ci-runner:test-ci
+```
+
 ## Maintenance and releasing
 
 ### Versioning
