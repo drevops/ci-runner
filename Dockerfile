@@ -161,7 +161,7 @@ RUN version=1.22.22 && \
 ENV GOSS_FILES_STRATEGY=cp
 # See https://github.com/goss-org/goss/releases for release versions
 # hadolint ignore=DL4006
-RUN version=v0.4.8 && \
+RUN version=v0.4.9 && \
     curl -L "https://github.com/goss-org/goss/releases/download/${version}/goss-linux-amd64" -o /usr/local/bin/goss && \
     chmod +rx /usr/local/bin/goss && \
     curl -L "https://github.com/goss-org/goss/releases/download/${version}/dgoss" -o /usr/local/bin/dgoss && \
