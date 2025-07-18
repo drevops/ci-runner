@@ -88,7 +88,7 @@ RUN version=0.10.0 && \
 # renovate: datasource=github-releases depName=mvdan/sh extractVersion=^v(?<version>.*)$
 # hadolint ignore=SC2015
 RUN version=3.12.0 && \
-    curl -L -o "/tmp/shfmt-v${version}" "https://github.com/mvdan/sh/releases/download/v${version}/shfmt_v${version}_linux_386" && \
+    curl -L -o "/tmp/shfmt-v${version}" "https://github.com/mvdan/sh/releases/download/v${version}/shfmt_v${version}_linux_amd64" && \
     mv "/tmp/shfmt-v${version}" /usr/local/bin/shfmt && \
     chmod +x /usr/local/bin/shfmt && \
     shfmt --version || true
