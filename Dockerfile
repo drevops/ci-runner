@@ -90,7 +90,7 @@ ENV SH_VERSION=3.12.0
 # hadolint ignore=SC2015
 RUN curl -L -o "/tmp/shfmt-v${SH_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SH_VERSION}/shfmt_v${SH_VERSION}_linux_386" && \
     mv "/tmp/shfmt-v${SH_VERSION}" /usr/local/bin/shfmt && \
-    chmod +x /usr/bin/shfmt && \
+    chmod +x /usr/local/bin/shfmt && \
     shfmt --version || true
 
 # Install Docker and Docker Compose V2 (docker compose).
@@ -119,6 +119,7 @@ RUN curl --silent -L "https://github.com/docker/buildx/releases/download/v${BUIL
 
 # Install composer.
 # @see https://getcomposer.org/download
+# renovate: datasource=github-releases depName=composer/composer extractVersion=^(?<version>.*)$
 ENV COMPOSER_VERSION=2.8.8
 ENV COMPOSER_SHA=dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -132,10 +133,13 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 
 # Install NodeJS.
 # @see https://nodejs.org/download/release/
+# renovate: datasource=node versioning=node extractVersion=^v(?<version>.*)$
 ENV NODE_VERSION=v23.11.0
-RUN curl -L -o "/tmp/node-${NODE_VERSION}-linux-x64.tar.xz" "https://nodejs.org/download/release/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.xz" && \
-    tar -xJ -C /usr/local --strip-components=1 -f "/tmp/node-${NODE_VERSION}-linux-x64.tar.xz" && \
-    rm -rf "/tmp/node-${NODE_VERSION}-linux-x64.tar.xz" && \
+RUN arch=$(uname -m) && \
+    if [ "${arch}" = "x86_64" ]; then arch="x64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
+    curl -L -o "/tmp/node-${NODE_VERSION}-linux-${arch}.tar.xz" "https://nodejs.org/download/release/${NODE_VERSION}/node-${NODE_VERSION}-linux-${arch}.tar.xz" && \
+    tar -xJ -C /usr/local --strip-components=1 -f "/tmp/node-${NODE_VERSION}-linux-${arch}.tar.xz" && \
+    rm -rf "/tmp/node-${NODE_VERSION}-linux-${arch}.tar.xz" && \
     node --version && \
     npm --version
 
@@ -191,16 +195,17 @@ RUN curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/rel
 
 # Install PCOV
 # @see https://pecl.php.net/package/pcov
+# renovate: datasource=pecl depName=pcov extractVersion=^(?<version>.*)$
 ENV PCOV_VERSION=1.0.12
 RUN pecl install "pcov-${PCOV_VERSION}" && \
     docker-php-ext-enable pcov && \
     rm -rf /tmp/pear && \
     php -m
 
+COPY --from=builder /usr/local/bin/kcov* /usr/local/bin/
+COPY --from=builder /usr/local/share/doc/kcov /usr/local/share/doc/kcov
+
 # Install a stub for pygmy.
 # Some frameworks may require presence of tools that are not required in CI container.
 RUN ln -s /usr/bin/true /usr/local/bin/pygmy && \
     ln -s /usr/bin/true /usr/local/bin/sendmail
-
-COPY --from=builder /usr/local/bin/kcov* /usr/local/bin/
-COPY --from=builder /usr/local/share/doc/kcov /usr/local/share/doc/kcov
