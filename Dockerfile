@@ -40,7 +40,11 @@ RUN apt-get update -qq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" maintainer="Alex Skrypnyk <alex@drevops.com>"
+LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
+      org.opencontainers.image.description="CI runner with PHP, Node.js, Docker, and development tools" \
+      org.opencontainers.image.source="https://github.com/drevops/ci-runner" \
+      org.opencontainers.image.vendor="DrevOps" \
+      maintainer="Alex Skrypnyk <alex@drevops.com>"
 
 # Ensure temporary files are not retained in the image.
 VOLUME /tmp
@@ -75,7 +79,8 @@ RUN apt-get update -qq && \
 ENV SHELLCHECK_VERSION=0.10.0
 RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" && \
     tar --xz -xvf "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" && \
-    mv "shellcheck-v${SHELLCHECK_VERSION}/shellcheck" /usr/bin/ && \
+    mv "shellcheck-v${SHELLCHECK_VERSION}/shellcheck" /usr/local/bin/ && \
+    rm -rf "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "shellcheck-v${SHELLCHECK_VERSION}" && \
     shellcheck --version
 
 # Install shfmt
@@ -84,7 +89,7 @@ RUN curl -L -o "/tmp/shellcheck-v${SHELLCHECK_VERSION}.tar.xz" "https://github.c
 ENV SH_VERSION=3.12.0
 # hadolint ignore=SC2015
 RUN curl -L -o "/tmp/shfmt-v${SH_VERSION}" "https://github.com/mvdan/sh/releases/download/v${SH_VERSION}/shfmt_v${SH_VERSION}_linux_386" && \
-    mv "/tmp/shfmt-v${SH_VERSION}" /usr/bin/shfmt && \
+    mv "/tmp/shfmt-v${SH_VERSION}" /usr/local/bin/shfmt && \
     chmod +x /usr/bin/shfmt && \
     shfmt --version || true
 
@@ -167,6 +172,7 @@ RUN curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archiv
     mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 && \
     cd /tmp/bats && \
     ./install.sh /usr/local && \
+    rm -rf /tmp/bats* && \
     bats -v
 
 # Install Ahoy.
@@ -193,8 +199,8 @@ RUN curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/rel
 
 # Install PCOV
 # @see https://pecl.php.net/package/pcov
-ENV CODECOV_VERSION=1.0.12
-RUN pecl install "pcov-${CODECOV_VERSION}" && docker-php-ext-enable pcov && php -m
+ENV PCOV_VERSION=1.0.12
+RUN pecl install "pcov-${PCOV_VERSION}" && docker-php-ext-enable pcov && php -m
 
 # Install a stub for pygmy.
 # Some frameworks may require presence of tools that are not required in CI container.
