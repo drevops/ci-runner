@@ -33,13 +33,6 @@ RUN version=43 && \
 
 FROM php:8.4-cli-bookworm
 
-# Upgrade all installed packages and clean up.
-# hadolint ignore=DL3005
-RUN apt-get update -qq && \
-    apt-get upgrade -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
       org.opencontainers.image.description="CI runner with PHP, Node.js, Docker, and development tools" \
       org.opencontainers.image.source="https://github.com/drevops/ci-runner" \
@@ -48,6 +41,20 @@ LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
 
 # Ensure temporary files are not retained in the image.
 VOLUME /tmp
+
+COPY --from=builder /usr/local/bin/kcov* /usr/local/bin/
+COPY --from=builder /usr/local/share/doc/kcov /usr/local/share/doc/kcov
+
+# Some frameworks may require presence of tools that are not required in CI container.
+RUN ln -s /usr/bin/true /usr/local/bin/pygmy && \
+    ln -s /usr/bin/true /usr/local/bin/sendmail
+
+# Upgrade all installed packages and clean up.
+# hadolint ignore=DL3005
+RUN apt-get update -qq && \
+    apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq && \
@@ -92,6 +99,35 @@ RUN version=3.12.0 && \
     mv "/tmp/shfmt-v${version}" /usr/local/bin/shfmt && \
     chmod +x /usr/local/bin/shfmt && \
     shfmt --version || true
+
+# Install PCOV
+# @see https://pecl.php.net/package/pcov
+# renovate: datasource=github-releases depName=krakjoe/pcov extractVersion=^(?<version>.*)$
+RUN version=1.0.12 && \
+    pecl install "pcov-${version}" && \
+    docker-php-ext-enable pcov && \
+    rm -rf /tmp/pear && \
+    php -m
+
+# Install Codecov reporter.
+# @see https://github.com/codecov/uploader/releases
+# renovate: datasource=github-releases depName=codecov/uploader extractVersion=^(?<version>.*)$
+RUN version=0.8.0 && \
+    curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/releases/download/v${version}/codecov-linux" && \
+    chmod +x /usr/local/bin/codecov && \
+    codecov --version
+
+# Install Bats.
+# @see https://github.com/bats-core/bats-core/releases
+# renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^(?<version>.*)$
+# hadolint ignore=DL3003
+RUN version=1.12.0 && \
+    curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/v${version}.tar.gz" && \
+    mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 && \
+    cd /tmp/bats && \
+    ./install.sh /usr/local && \
+    rm -rf /tmp/bats* && \
+    bats -v
 
 # Install Docker.
 # @see https://download.docker.com/linux/static/stable/x86_64
@@ -154,40 +190,3 @@ RUN version=1.22.22 && \
     npm install --global "yarn@${version}" --no-audit --no-fund && \
     npm cache clean --force && \
     yarn --version
-
-# Install Bats.
-# @see https://github.com/bats-core/bats-core/releases
-# renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^(?<version>.*)$
-# hadolint ignore=DL3003
-RUN version=1.12.0 && \
-    curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/v${version}.tar.gz" && \
-    mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 && \
-    cd /tmp/bats && \
-    ./install.sh /usr/local && \
-    rm -rf /tmp/bats* && \
-    bats -v
-
-# Install Codecov reporter.
-# @see https://github.com/codecov/uploader/releases
-# renovate: datasource=github-releases depName=codecov/uploader extractVersion=^(?<version>.*)$
-RUN version=0.8.0 && \
-    curl -L -o "/usr/local/bin/codecov" "https://github.com/codecov/uploader/releases/download/v${version}/codecov-linux" && \
-    chmod +x /usr/local/bin/codecov && \
-    codecov --version
-
-# Install PCOV
-# @see https://pecl.php.net/package/pcov
-# renovate: datasource=github-releases depName=krakjoe/pcov extractVersion=^(?<version>.*)$
-RUN version=1.0.12 && \
-    pecl install "pcov-${version}" && \
-    docker-php-ext-enable pcov && \
-    rm -rf /tmp/pear && \
-    php -m
-
-COPY --from=builder /usr/local/bin/kcov* /usr/local/bin/
-COPY --from=builder /usr/local/share/doc/kcov /usr/local/share/doc/kcov
-
-# Install a stub for pygmy.
-# Some frameworks may require presence of tools that are not required in CI container.
-RUN ln -s /usr/bin/true /usr/local/bin/pygmy && \
-    ln -s /usr/bin/true /usr/local/bin/sendmail
