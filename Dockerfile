@@ -183,7 +183,7 @@ RUN version=1.12.0 && \
 # Install Ahoy.
 # @see https://github.com/ahoy-cli/ahoy/releases
 # renovate: datasource=github-releases depName=ahoy-cli/ahoy extractVersion=^(?<version>.*)$
-RUN version=2.4.0 && \
+RUN version=2.5.0 && \
     set -x && curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${version}/ahoy-bin-$(uname -s)-amd64" && \
     chmod +x /usr/local/bin/ahoy && \
     ahoy --version
