@@ -155,19 +155,6 @@ RUN version=1.22.22 && \
     npm cache clean --force && \
     yarn --version
 
-# Install Goss.
-# @see https://github.com/goss-org/goss/releases
-# renovate: datasource=github-releases depName=aelsabbahy/goss extractVersion=^v(?<version>.*)$
-ENV GOSS_FILES_STRATEGY=cp
-# See https://github.com/goss-org/goss/releases for release versions
-# hadolint ignore=DL4006
-RUN version=0.4.9 && \
-    curl -L "https://github.com/goss-org/goss/releases/download/v${version}/goss-linux-amd64" -o /usr/local/bin/goss && \
-    chmod +rx /usr/local/bin/goss && \
-    curl -L "https://github.com/goss-org/goss/releases/download/v${version}/dgoss" -o /usr/local/bin/dgoss && \
-    chmod +rx /usr/local/bin/dgoss && \
-    goss --version
-
 # Install Bats.
 # @see https://github.com/bats-core/bats-core/releases
 # renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^(?<version>.*)$
@@ -179,20 +166,6 @@ RUN version=1.12.0 && \
     ./install.sh /usr/local && \
     rm -rf /tmp/bats* && \
     bats -v
-
-# Install Ahoy.
-# @see https://github.com/ahoy-cli/ahoy/releases
-# renovate: datasource=github-releases depName=ahoy-cli/ahoy extractVersion=^(?<version>.*)$
-RUN version=2.4.0 && \
-    set -x && curl -L -o "/usr/local/bin/ahoy" "https://github.com/ahoy-cli/ahoy/releases/download/v${version}/ahoy-bin-$(uname -s)-amd64" && \
-    chmod +x /usr/local/bin/ahoy && \
-    ahoy --version
-
-# Install Task.
-# @see https://github.com/go-task/task/releases
-# renovate: datasource=github-releases depName=go-task/task extractVersion=^(?<version>.*)$
-RUN version=3.44.0 && \
-    sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "v$version"
 
 # Install Codecov reporter.
 # @see https://github.com/codecov/uploader/releases

@@ -6,7 +6,6 @@ set -e
 DOCKER_IMAGE="${1}"
 
 commands=(
-  "ahoy --version"
   "aspell --version"
   "bats --version"
   "composer --version"
@@ -16,7 +15,6 @@ commands=(
   "docker buildx version"
   "docker compose version"
   "git --version"
-  "goss --version"
   "gpg --version"
   "jq --version"
   "kcov --version"
@@ -30,7 +28,6 @@ commands=(
   "shellcheck --version"
   "shfmt --version"
   "ssh -V"
-  "task --version"
   "tree --version"
   "unzip -v"
   "vim --version"

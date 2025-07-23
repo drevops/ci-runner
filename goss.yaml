@@ -14,13 +14,6 @@ command:
     stderr: []
     timeout: 10000
 
-  which ahoy:
-    exit-status: 0
-    stdout:
-      - /usr/local/bin/ahoy
-    stderr: []
-    timeout: 10000
-
   which aspell:
     exit-status: 0
     stdout:
@@ -79,13 +72,6 @@ command:
 
   test -d $HOME/.gnupg:
     exit-status: 0
-    stderr: []
-    timeout: 10000
-
-  which goss:
-    exit-status: 0
-    stdout:
-      - /usr/local/bin/goss
     stderr: []
     timeout: 10000
 
@@ -191,13 +177,6 @@ command:
     exit-status: 0
     stdout:
       - /usr/bin/ssh
-    stderr: []
-    timeout: 10000
-
-  which task:
-    exit-status: 0
-    stdout:
-      - /usr/local/bin/task
     stderr: []
     timeout: 10000
 
