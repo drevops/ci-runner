@@ -25,14 +25,12 @@ Based on Debian `php:8.4-cli-bookworm`.
 
 ## Included
 
-- [Ahoy](https://github.com/ahoy-cli/ahoy) - workflow helper
 - [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
 - [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)
 - [Composer](https://github.com/composer/composer)
 - curl
 - [Docker](https://github.com/docker/docker-ce) and [Docker Compose](https://github.com/docker/compose)
 - git
-- [Goss](https://github.com/aelsabbahy/goss) - environment testing
 - [kcov](https://github.com/SimonKagstrom/kcov) - code coverage tester for compiled languages, Python and Bash
 - lsof
 - Lynx
@@ -40,7 +38,6 @@ Based on Debian `php:8.4-cli-bookworm`.
 - PHP
 - [Shellcheck](https://github.com/koalaman/shellcheck) - a shell script static analysis tool
 - [shfmt](https://github.com/mvdan/sh) - a shell parser, formatter, and interpreter.
-- [Task](https://github.com/go-task/task) - workflow helper
 - vim
 - [yarn](https://yarnpkg.com/)
 - zip/unzip
