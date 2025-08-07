@@ -83,7 +83,7 @@ RUN apt-get update -qq && \
 # Install shellcheck
 # @see https://github.com/koalaman/shellcheck/releases
 # renovate: datasource=github-releases depName=koalaman/shellcheck extractVersion=^(?<version>.*)$
-RUN version=0.10.0 && \
+RUN version=0.11.0 && \
     curl -L -o "/tmp/shellcheck-v${version}.tar.xz" "https://github.com/koalaman/shellcheck/releases/download/v${version}/shellcheck-v${version}.linux.x86_64.tar.xz" && \
     tar --xz -xvf "/tmp/shellcheck-v${version}.tar.xz" && \
     mv "shellcheck-v${version}/shellcheck" /usr/local/bin/ && \
