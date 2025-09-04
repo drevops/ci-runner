@@ -151,7 +151,7 @@ RUN version=2.39.2 && \
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 # renovate: datasource=github-releases depName=docker/buildx extractVersion=^(?<version>.*)$
-RUN version=0.27.0 && \
+RUN version=0.28.0 && \
     curl --silent -L "https://github.com/docker/buildx/releases/download/v${version}/buildx-v${version}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx && \
     chmod a+x "$HOME/.docker/cli-plugins/docker-buildx" && \
     docker buildx version
