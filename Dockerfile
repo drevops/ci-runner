@@ -142,7 +142,7 @@ RUN version=28.4.0 && \
 # Install Docker Compose V2 (docker compose).
 # @see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^(?<version>.*)$
-RUN version=2.39.3 && \
+RUN version=2.39.4 && \
     mkdir -p "$HOME/.docker/cli-plugins" && \
     curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" && \
     chmod +x "$HOME/.docker/cli-plugins/docker-compose" && \
