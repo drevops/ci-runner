@@ -56,6 +56,26 @@ For testing purposes, you can use the `canary` tag:
 drevops/ci-runner:canary
 ```
 
+When using in GitHub Actions, make sure to add a fix for the overwritten `$HOME`:
+
+```
+name: Test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    container:
+      image: drevops/ci-runner:25.8.0
+
+    steps:
+      - name: Preserve $HOME set in the container
+        run: echo HOME=/root >> "$GITHUB_ENV" # https://github.com/actions/runner/issues/863
+
+      - name: Check out the repo
+        uses: actions/checkout@v5
+```
+
 ## Testing
 
 The image includes [Goss](https://github.com/aelsabbahy/goss) for environment testing. To run tests locally using dgoss:
