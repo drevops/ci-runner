@@ -143,17 +143,17 @@ RUN version=28.4.0 && \
 # @see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^(?<version>.*)$
 RUN version=2.39.4 && \
-    mkdir -p "$HOME/.docker/cli-plugins" && \
-    curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "$HOME/.docker/cli-plugins/docker-compose" && \
-    chmod +x "$HOME/.docker/cli-plugins/docker-compose" && \
+    mkdir -p "/usr/local/lib/docker/cli-plugins" && \
+    curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "/usr/local/lib/docker/cli-plugins/docker-compose" && \
+    chmod +x "/usr/local/lib/docker/cli-plugins/docker-compose" && \
     docker compose version
 
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 # renovate: datasource=github-releases depName=docker/buildx extractVersion=^(?<version>.*)$
 RUN version=0.28.0 && \
-    curl --silent -L "https://github.com/docker/buildx/releases/download/v${version}/buildx-v${version}.linux-amd64" > ~/.docker/cli-plugins/docker-buildx && \
-    chmod a+x "$HOME/.docker/cli-plugins/docker-buildx" && \
+    curl --silent -L "https://github.com/docker/buildx/releases/download/v${version}/buildx-v${version}.linux-amd64" > /usr/local/lib/docker/cli-plugins/docker-buildx && \
+    chmod a+x "/usr/local/lib/docker/cli-plugins/docker-buildx" && \
     docker buildx version
 
 # Install composer.
