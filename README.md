@@ -23,7 +23,7 @@
 
 Based on Debian `php:8.4-cli-bookworm`.
 
-## Included
+## Included packages
 
 - [Aspell](https://github.com/GNUAspell/aspell) - English language spellcheker
 - [Bats](https://github.com/bats-core/bats-core) - Bash Automated Testing System (2018)

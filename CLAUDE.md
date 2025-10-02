@@ -81,7 +81,7 @@ docker run --rm -i hadolint/hadolint < Dockerfile
 
 ### Version Information
 ```bash
-# Show all installed tool versions
+# Extract package versions (outputs key=value format)
 ./versions.sh "drevops/ci-runner:test-ci"
 ```
 
@@ -92,7 +92,7 @@ Dependencies are managed via Renovate bot with custom regex managers for Dockerf
 1. Add installation RUN command in Dockerfile
 2. Add renovate comment above it with datasource and depName
 3. Add version check to goss.yaml
-4. Add version command to versions.sh
+4. Add version command to `versions.sh` commands array (the `extract_version()` function is generic and doesn't need modification)
 
 Example:
 ```dockerfile
@@ -108,12 +108,26 @@ RUN version=1.2.3 && \
 
 ## GitHub Actions
 
-The CI pipeline (`.github/workflows/test.yml`) runs:
+### Test Workflow (`.github/workflows/test.yml`)
+
+Runs on pull requests and pushes to main:
 1. Dockerfile linting with hadolint
 2. Image build
 3. Goss tests via dgoss
-4. Version information generation
-5. Artifact upload (versions.txt)
+4. Display package versions via `versions.sh`
+
+### Update README Workflow (`.github/workflows/update-readme.yml`)
+
+Runs automatically after merges to main, or can be triggered manually:
+1. Builds the Docker image
+2. Extracts package versions using `versions.sh`
+3. Checks if README "Included packages" section is outdated
+4. If outdated: Updates README.md and commits with message "Updated README.md with packages versions."
+5. If up to date: Does nothing
+
+The workflow uses `awk` to replace the "## Included packages" section with the raw contents of versions.txt wrapped in a code block.
+
+**Manual trigger**: The workflow can be run manually from the Actions tab in GitHub.
 
 **Important**: When using this image in GitHub Actions, include the `$HOME` fix:
 ```yaml

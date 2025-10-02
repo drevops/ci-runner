@@ -1,0 +1,68 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**readme**'
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_VERSION: 27.3.1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install Docker
+        run: |
+          curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
+          && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
+          && sudo mv /tmp/docker/* /usr/bin \
+          && docker --version
+
+      - name: Build image
+        run: docker build -t drevops/ci-runner:latest .
+
+      - name: Extract package versions
+        run: ./versions.sh "drevops/ci-runner:latest" > versions.txt
+
+      - name: Update README with package versions
+        run: |
+          awk '
+            /^## Included packages$/ {
+              print
+              print ""
+              print "```"
+              system("cat versions.txt")
+              print "```"
+              skip=1
+              next
+            }
+            /^##/ && skip { skip=0 }
+            !skip { print }
+          ' README.md > /tmp/readme_updated.md
+
+          # Check if README changed
+          if diff -q README.md /tmp/readme_updated.md > /dev/null 2>&1; then
+            echo "README.md is already up to date"
+            echo "updated=false" >> "$GITHUB_ENV"
+          else
+            echo "README.md needs updating"
+            mv /tmp/readme_updated.md README.md
+            echo "updated=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Commit README changes
+        if: env.updated == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Updated README.md with packages versions."
+          file_pattern: README.md
