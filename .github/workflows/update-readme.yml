@@ -62,7 +62,7 @@ jobs:
 
       - name: Commit README changes
         if: env.updated == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "Updated README.md with packages versions."
           file_pattern: README.md
