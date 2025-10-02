@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.head_ref }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -47,68 +50,3 @@ jobs:
 
       - name: Show versions
         run: ./versions.sh "drevops/ci-runner:test-ci"
-
-      - name: Generate versions file
-        run: ./versions.sh "drevops/ci-runner:test-ci" > versions.txt
-
-      - name: Upload versions artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: versions
-          path: versions.txt
-
-      - name: Format versions for PR comment
-        if: github.event_name == 'pull_request'
-        run: |
-          {
-            echo "## 📦 Installed Packages"
-            echo ""
-            echo "<details>"
-            echo "<summary>View installed package versions</summary>"
-            echo ""
-            echo '```'
-            cat versions.txt
-            echo '```'
-            echo "</details>"
-          } > pr_comment.md
-
-      - name: Comment PR with versions
-        if: github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body-path: pr_comment.md
-
-      - name: Find installed packages issue
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        id: find-issue
-        run: |
-          ISSUE_NUMBER=$(gh issue list --state open --search "📦 Installed packages" --json number --jq '.[0].number')
-          echo "issue-number=${ISSUE_NUMBER}" >> "$GITHUB_OUTPUT"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Format versions for issue comment
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          {
-            echo "## 📦 Installed Packages"
-            echo ""
-            echo "**Commit:** [\`${{ github.sha }}\`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})"
-            echo "**Date:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-            echo ""
-            echo "<details>"
-            echo "<summary>View installed package versions</summary>"
-            echo ""
-            echo '```'
-            cat versions.txt
-            echo '```'
-            echo "</details>"
-          } > issue_comment.md
-
-      - name: Post versions to issue
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push' && steps.find-issue.outputs.issue-number != ''
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          issue-number: ${{ steps.find-issue.outputs.issue-number }}
-          body-path: issue_comment.md
