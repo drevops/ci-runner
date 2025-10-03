@@ -29,37 +29,11 @@ jobs:
           && docker --version
 
       - name: Build image
-        run: docker build -t drevops/ci-runner:latest .
-
-      - name: Extract package versions
-        run: ./versions.sh "drevops/ci-runner:latest" > versions.txt
+        run: docker build -t drevops/ci-runner:test .
 
       - name: Update README with package versions
         id: update-readme
-        run: |
-          awk '
-            /^## Included packages$/ {
-              print
-              print ""
-              print "```"
-              system("cat versions.txt")
-              print "```"
-              skip=1
-              next
-            }
-            /^##/ && skip { skip=0 }
-            !skip { print }
-          ' README.md > /tmp/readme_updated.md
-
-          # Check if README changed
-          if diff -q README.md /tmp/readme_updated.md > /dev/null 2>&1; then
-            echo "README.md is already up to date"
-            echo "updated=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "README.md needs updating"
-            mv /tmp/readme_updated.md README.md
-            echo "updated=true" >> "$GITHUB_OUTPUT"
-          fi
+        run: ./versions.js "drevops/ci-runner:test" --update-readme=README.md --section '## Included packages' || echo "updated=true" >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request
         if: steps.update-readme.outputs.updated == 'true'

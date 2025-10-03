@@ -81,9 +81,17 @@ docker run --rm -i hadolint/hadolint < Dockerfile
 
 ### Version Information
 ```bash
-# Extract package versions (outputs key=value format)
-./versions.sh "drevops/ci-runner:test-ci"
+# Extract package versions (outputs markdown format)
+./versions.js "drevops/ci-runner:test-ci"
+
+# Update README.md directly
+./versions.js "drevops/ci-runner:test-ci" --update-readme README.md
+
+# Update with custom section title
+./versions.js "drevops/ci-runner:test-ci" --update-readme README.md --section "## Packages"
 ```
+
+Tool configurations are defined in `versions-config.json`.
 
 ## Updating Dependencies
 
@@ -92,9 +100,9 @@ Dependencies are managed via Renovate bot with custom regex managers for Dockerf
 1. Add installation RUN command in Dockerfile
 2. Add renovate comment above it with datasource and depName
 3. Add version check to goss.yaml
-4. Add version command to `versions.sh` commands array (the `extract_version()` function is generic and doesn't need modification)
+4. Add tool entry to `versions-config.json` with name, URL, version command, and extraction regex
 
-Example:
+Example Dockerfile entry:
 ```dockerfile
 # Install tool
 # @see https://github.com/org/tool/releases
@@ -106,6 +114,18 @@ RUN version=1.2.3 && \
     tool --version
 ```
 
+Example versions-config.json entry:
+```json
+{
+  "name": "Tool Name",
+  "url": "https://tool-homepage.com",
+  "cmd": "tool --version",
+  "regex": "version[:\\s]+v?(\\d+\\.\\d+\\.\\d+)"
+}
+```
+
+Note: Regex is stored as a string and will be compiled with 'im' flags (case-insensitive, multiline).
+
 ## GitHub Actions
 
 ### Test Workflow (`.github/workflows/test.yml`)
@@ -114,18 +134,21 @@ Runs on pull requests and pushes to main:
 1. Dockerfile linting with hadolint
 2. Image build
 3. Goss tests via dgoss
-4. Display package versions via `versions.sh`
+4. Display package versions via `versions.js`
 
 ### Update README Workflow (`.github/workflows/update-readme.yml`)
 
 Runs automatically after merges to main, or can be triggered manually:
 1. Builds the Docker image
-2. Extracts package versions using `versions.sh`
-3. Updates README "Included packages" section with versions
-4. Creates a pull request with the changes (labeled "automerge")
-5. PR triggers test workflow, and auto-merges once tests pass
+2. Runs `versions.js` with `--update-readme` flag to update README.md directly
+3. Creates a pull request with the changes (labeled "automerge") if README changed
+4. PR triggers test workflow, and auto-merges once tests pass
 
-The workflow uses `awk` to replace the "## Included packages" section with the raw contents of versions.txt wrapped in a code block.
+The `versions.js` script:
+- Reads tool configurations from `versions-config.json`
+- Extracts versions from the Docker image
+- Updates the "## Included packages" section in README.md
+- Returns exit code 0 if no changes, 1 if changes were made
 
 **Manual trigger**: The workflow can be run manually from the Actions tab in GitHub.
 
