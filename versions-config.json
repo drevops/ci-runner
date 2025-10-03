@@ -1,0 +1,164 @@
+[
+  {
+    "name": "aspell",
+    "url": "http://aspell.net",
+    "cmd": "aspell --version",
+    "regex": "version[:\\s]+v?(\\d+\\.\\d+(?:\\.\\d+)?)"
+  },
+  {
+    "name": "Bats",
+    "url": "https://github.com/bats-core/bats-core",
+    "cmd": "bats --version",
+    "regex": "Bats\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Composer",
+    "url": "https://getcomposer.org",
+    "cmd": "composer --version",
+    "regex": "Composer version\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Codecov",
+    "url": "https://codecov.io",
+    "cmd": "codecov --version",
+    "regex": "^(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "curl",
+    "url": "https://curl.se",
+    "cmd": "curl --version",
+    "regex": "curl\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Docker",
+    "url": "https://www.docker.com",
+    "cmd": "docker --version",
+    "regex": "version[:\\s]+v?(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Docker Buildx",
+    "url": "https://github.com/docker/buildx",
+    "cmd": "docker buildx version",
+    "regex": "buildx\\s+v(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Docker Compose",
+    "url": "https://docs.docker.com/compose",
+    "cmd": "docker compose version",
+    "regex": "version[:\\s]+v?(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Git",
+    "url": "https://git-scm.com",
+    "cmd": "git --version",
+    "regex": "git version\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "GnuPG",
+    "url": "https://gnupg.org",
+    "cmd": "gpg --version",
+    "regex": "gpg \\(GnuPG\\)\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "jq",
+    "url": "https://jqlang.github.io/jq",
+    "cmd": "jq --version",
+    "regex": "jq-(\\d+\\.\\d+)"
+  },
+  {
+    "name": "kcov",
+    "url": "https://github.com/SimonKagstrom/kcov",
+    "cmd": "kcov --version",
+    "regex": "kcov\\s+(\\d+)"
+  },
+  {
+    "name": "lsof",
+    "url": "https://github.com/lsof-org/lsof",
+    "cmd": "lsof -v",
+    "regex": "revision:\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Lynx",
+    "url": "https://lynx.invisible-island.net",
+    "cmd": "lynx --version",
+    "regex": "Lynx Version\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Node.js",
+    "url": "https://nodejs.org",
+    "cmd": "node --version",
+    "regex": "v(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "npm",
+    "url": "https://www.npmjs.com",
+    "cmd": "npm --version",
+    "regex": "(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "npx",
+    "url": "https://www.npmjs.com/package/npx",
+    "cmd": "npx --version",
+    "regex": "(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "PHP",
+    "url": "https://www.php.net",
+    "cmd": "php --version",
+    "regex": "PHP\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "rsync",
+    "url": "https://rsync.samba.org",
+    "cmd": "rsync --version",
+    "regex": "version[:\\s]+v?(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "ShellCheck",
+    "url": "https://www.shellcheck.net",
+    "cmd": "shellcheck --version",
+    "regex": "version:\\s+(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "shfmt",
+    "url": "https://github.com/mvdan/sh",
+    "cmd": "shfmt --version",
+    "regex": "v(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "OpenSSH",
+    "url": "https://www.openssh.com",
+    "cmd": "ssh -V",
+    "regex": "OpenSSH_(\\d+\\.\\d+)p?\\d*"
+  },
+  {
+    "name": "tree",
+    "url": "http://mama.indstate.edu/users/ice/tree",
+    "cmd": "tree --version",
+    "regex": "tree v(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "UnZip",
+    "url": "http://www.info-zip.org/UnZip.html",
+    "cmd": "unzip -v",
+    "regex": "UnZip\\s+(\\d+\\.\\d+)"
+  },
+  {
+    "name": "Vim",
+    "url": "https://www.vim.org",
+    "cmd": "vim --version",
+    "regex": "VIM - Vi IMproved\\s+(\\d+\\.\\d+)"
+  },
+  {
+    "name": "Yarn",
+    "url": "https://yarnpkg.com",
+    "cmd": "yarn --version",
+    "regex": "(\\d+\\.\\d+\\.\\d+)"
+  },
+  {
+    "name": "Zip",
+    "url": "http://www.info-zip.org/Zip.html",
+    "cmd": "zip --version",
+    "regex": "Zip\\s+(\\d+\\.\\d+)"
+  }
+]
