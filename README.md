@@ -25,35 +25,33 @@ Based on Debian `php:8.4-cli-bookworm`.
 
 ## Included packages
 
-```
-aspell=3.1.20
-bats=1.12.0
-composer=2.8.12
-codecov=0.8.0
-curl=7.88.1
-docker=28.5.0
-docker_buildx=0.29.0
-docker_compose=2.39.4
-git=2.39.5
-gpg=2.2.40
-jq=1.6
-kcov=43
-lsof=11.3.0
-lynx=2.9.0
-node=23.11.1
-npm=10.9.2
-npx=10.9.2
-php=8.4.13
-rsync=3.2.7
-shellcheck=0.11.0
-shfmt=3.12.0
-ssh=9.2
-tree=2.1.0
-unzip=1.0.8
-vim=9.0
-yarn=1.22.22
-zip=1.0.8
-```
+- [aspell](http://aspell.net): `3.1.20`
+- [Bats](https://github.com/bats-core/bats-core): `1.12.0`
+- [Composer](https://getcomposer.org): `2.8.12`
+- [Codecov](https://codecov.io): `0.8.0`
+- [curl](https://curl.se): `7.88.1`
+- [Docker](https://www.docker.com): `28.5.0`
+- [Docker Buildx](https://github.com/docker/buildx): `0.29.0`
+- [Docker Compose](https://docs.docker.com/compose): `2.39.4`
+- [Git](https://git-scm.com): `2.39.5`
+- [GnuPG](https://gnupg.org): `2.2.40`
+- [jq](https://jqlang.github.io/jq): `1.6`
+- [kcov](https://github.com/SimonKagstrom/kcov): `43`
+- [lsof](https://github.com/lsof-org/lsof): `4.95.0`
+- [Lynx](https://lynx.invisible-island.net): `2.9.0`
+- [Node.js](https://nodejs.org): `23.11.1`
+- [npm](https://www.npmjs.com): `10.9.2`
+- [npx](https://www.npmjs.com/package/npx): `10.9.2`
+- [PHP](https://www.php.net): `8.4.13`
+- [rsync](https://rsync.samba.org): `3.2.7`
+- [ShellCheck](https://www.shellcheck.net): `0.11.0`
+- [shfmt](https://github.com/mvdan/sh): `3.12.0`
+- [OpenSSH](https://www.openssh.com): `9.2`
+- [tree](http://mama.indstate.edu/users/ice/tree): `2.1.0`
+- [UnZip](http://www.info-zip.org/UnZip.html): `6.00`
+- [Vim](https://www.vim.org): `9.0`
+- [Yarn](https://yarnpkg.com): `1.22.22`
+- [Zip](http://www.info-zip.org/Zip.html): `3.0`
 ## Usage
 
 Make sure to **always** pin the version of this image to the tag:
@@ -153,3 +151,5 @@ a `canary` version.
 
 ---
 _This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
+
+

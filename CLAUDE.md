@@ -154,6 +154,12 @@ The `versions.js` script:
 
 **Note**: Creates a PR instead of pushing directly to main to respect branch protection rules. The "automerge" label ensures the PR merges automatically once tests pass.
 
+**Important**: To trigger the test workflow on the created PR, you need to set up a Personal Access Token (PAT):
+1. Create a PAT with `repo` scope at https://github.com/settings/tokens
+2. Add it as a repository secret named `PAT`
+3. The workflow will use this token to create PRs that trigger other workflows
+4. Without the PAT, it falls back to `GITHUB_TOKEN` which won't trigger the test workflow
+
 **Important**: When using this image in GitHub Actions, include the `$HOME` fix:
 ```yaml
 container:
