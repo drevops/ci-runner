@@ -49,4 +49,4 @@ jobs:
         run: dgoss run -i drevops/ci-runner:test-ci
 
       - name: Show versions
-        run: ./versions.sh "drevops/ci-runner:test-ci"
+        run: ./versions.js "drevops/ci-runner:test-ci"
