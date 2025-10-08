@@ -132,7 +132,7 @@ RUN version=1.12.0 && \
 # Install Docker.
 # @see https://download.docker.com/linux/static/stable/x86_64
 # renovate: datasource=github-releases depName=moby/moby extractVersion=^(?<version>.*)$
-RUN version=28.5.0 && \
+RUN version=28.5.1 && \
     curl -L -o "/tmp/docker-${version}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${version}.tgz" && \
     tar -xz -C /tmp -f "/tmp/docker-${version}.tgz" && \
     mv /tmp/docker/* /usr/bin && \
