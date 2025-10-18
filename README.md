@@ -32,7 +32,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [curl](https://curl.se): `7.88.1`
 - [Docker](https://www.docker.com): `28.5.1`
 - [Docker Buildx](https://github.com/docker/buildx): `0.29.1`
-- [Docker Compose](https://docs.docker.com/compose): `2.40.0`
+- [Docker Compose](https://docs.docker.com/compose): `2.40.1`
 - [Git](https://git-scm.com): `2.39.5`
 - [GnuPG](https://gnupg.org): `2.2.40`
 - [jq](https://jqlang.github.io/jq): `1.6`
@@ -151,6 +151,8 @@ a `canary` version.
 
 ---
 _This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
+
+
 
 
 
