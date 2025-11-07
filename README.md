@@ -26,7 +26,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 ## Included packages
 
 - [aspell](http://aspell.net): `3.1.20`
-- [Bats](https://github.com/bats-core/bats-core): `1.12.0`
+- [Bats](https://github.com/bats-core/bats-core): `1.13.0`
 - [Composer](https://getcomposer.org): `2.8.12`
 - [Codecov](https://codecov.io): `0.8.0`
 - [curl](https://curl.se): `7.88.1`
@@ -151,6 +151,8 @@ a `canary` version.
 
 ---
 _This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
+
+
 
 
 
