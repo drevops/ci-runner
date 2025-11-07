@@ -121,7 +121,7 @@ RUN version=0.8.0 && \
 # @see https://github.com/bats-core/bats-core/releases
 # renovate: datasource=github-releases depName=bats-core/bats-core extractVersion=^(?<version>.*)$
 # hadolint ignore=DL3003
-RUN version=1.12.0 && \
+RUN version=1.13.0 && \
     curl -L -o "/tmp/bats.tar.gz" "https://github.com/bats-core/bats-core/archive/v${version}.tar.gz" && \
     mkdir -p /tmp/bats && tar -xz -C /tmp/bats -f /tmp/bats.tar.gz --strip 1 && \
     cd /tmp/bats && \
