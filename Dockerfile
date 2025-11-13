@@ -161,7 +161,7 @@ RUN version=0.30.0 && \
 # renovate: datasource=github-releases depName=composer/composer extractVersion=^(?<version>.*)$
 ENV COMPOSER_ALLOW_SUPERUSER=1
 # hadolint ignore=DL4006
-RUN version=2.9.0 && \
+RUN version=2.9.1 && \
     curl -sS https://getcomposer.org/download/${version}/composer.phar.sha256sum | awk '{ print $1, "composer.phar" }' > composer.phar.sha256sum && \
     curl -sS -o composer.phar https://getcomposer.org/download/${version}/composer.phar && \
     sha256sum -c composer.phar.sha256sum && \
