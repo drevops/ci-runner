@@ -5,6 +5,13 @@
   "extends": [
     "config:recommended"
   ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["php"],
+      "allowedVersions": "8.4.x"
+    }
+  ],
   "customManagers": [
     {
       "customType": "regex",
@@ -18,3 +25,4 @@
     }
   ]
 }
+

@@ -1,4 +1,4 @@
-FROM php:8.5-cli-bookworm AS builder
+FROM php:8.4-cli-bookworm AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq && \
@@ -31,7 +31,7 @@ RUN version=43 && \
     cmake --build . && \
     cmake --build . --target install
 
-FROM php:8.5-cli-bookworm
+FROM php:8.4-cli-bookworm
 
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
       org.opencontainers.image.description="CI runner with PHP, Node.js, Docker, and development tools" \
