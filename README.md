@@ -39,7 +39,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [kcov](https://github.com/SimonKagstrom/kcov): `43`
 - [lsof](https://github.com/lsof-org/lsof): `4.95.0`
 - [Lynx](https://lynx.invisible-island.net): `2.9.0`
-- [Node.js](https://nodejs.org): `24.11.1`
+- [Node.js](https://nodejs.org): `24.12.0`
 - [npm](https://www.npmjs.com): `11.6.2`
 - [npx](https://www.npmjs.com/package/npx): `11.6.2`
 - [PHP](https://www.php.net): `8.4.15`
@@ -151,6 +151,8 @@ a `canary` version.
 
 ---
 _This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
+
+
 
 
 
