@@ -10,7 +10,7 @@ command:
   docker compose version:
     exit-status: 0
     stdout:
-      - Docker Compose version v2
+      - Docker Compose version v5
     stderr: []
     timeout: 10000
 

@@ -139,10 +139,10 @@ RUN version=28.5.2 && \
     rm -rf /tmp/docker* && \
     docker --version
 
-# Install Docker Compose V2 (docker compose).
+# Install Docker Compose V5 (docker compose).
 # @see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^(?<version>.*)$
-RUN version=2.40.3 && \
+RUN version=5.0.2 && \
     mkdir -p "/usr/local/lib/docker/cli-plugins" && \
     curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "/usr/local/lib/docker/cli-plugins/docker-compose" && \
     chmod +x "/usr/local/lib/docker/cli-plugins/docker-compose" && \
