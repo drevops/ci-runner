@@ -17,6 +17,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/drevops/ci-runner?logo=docker)](https://hub.docker.com/r/drevops/ci-runner)
 ![amd64](https://img.shields.io/badge/arch-linux%2Famd64-brightgreen)
 
+[![Vortex Ecosystem](https://img.shields.io/badge/%F0%9F%8C%80-Vortex%20Ecosystem-65ACBC)](https://github.com/drevops/vortex)
 </div>
 
 ---
