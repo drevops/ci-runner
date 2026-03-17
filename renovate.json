@@ -1,15 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
   "automerge": true,
+  "rangeStrategy": "bump",
   "dependencyDashboard": true,
-  "extends": [
-    "config:recommended"
-  ],
+  "pinDigests": true,
+  "branchPrefix": "deps/",
   "packageRules": [
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["php"],
       "allowedVersions": "8.4.x"
+    },
+    {
+      "matchPackageNames": ["*"],
+      "groupName": "all dependencies",
+      "groupSlug": "all"
     }
   ],
   "customManagers": [
@@ -25,4 +31,3 @@
     }
   ]
 }
-
