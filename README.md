@@ -43,7 +43,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [Node.js](https://nodejs.org): `24.14.1`
 - [npm](https://www.npmjs.com): `11.11.0`
 - [npx](https://www.npmjs.com/package/npx): `11.11.0`
-- [PHP](https://www.php.net): `8.4.19`
+- [PHP](https://www.php.net): `8.4.20`
 - [rsync](https://rsync.samba.org): `3.2.7`
 - [ShellCheck](https://www.shellcheck.net): `0.11.0`
 - [shfmt](https://github.com/mvdan/sh): `3.13.1`
@@ -152,6 +152,8 @@ a `canary` version.
 
 ---
 _This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
+
+
 
 
 
