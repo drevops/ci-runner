@@ -142,7 +142,7 @@ RUN version=28.5.2 && \
 # Install Docker Compose V5 (docker compose).
 # @see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^(?<version>.*)$
-RUN version=5.1.2 && \
+RUN version=5.1.3 && \
     mkdir -p "/usr/local/lib/docker/cli-plugins" && \
     curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "/usr/local/lib/docker/cli-plugins/docker-compose" && \
     chmod +x "/usr/local/lib/docker/cli-plugins/docker-compose" && \
@@ -175,7 +175,7 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 # Install NodeJS.
 # @see https://nodejs.org/download/release/
 # renovate: datasource=node depName=node versioning=node extractVersion=^v(?<version>.*)$
-RUN version=24.14.1 && \
+RUN version=24.15.0 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="x64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
     curl -L -o "/tmp/node-${version}-linux-${arch}.tar.xz" "https://nodejs.org/download/release/v${version}/node-v${version}-linux-${arch}.tar.xz" && \
