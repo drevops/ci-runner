@@ -33,16 +33,16 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [curl](https://curl.se): `7.88.1`
 - [Docker](https://www.docker.com): `28.5.2`
 - [Docker Buildx](https://github.com/docker/buildx): `0.33.0`
-- [Docker Compose](https://docs.docker.com/compose): `5.1.2`
+- [Docker Compose](https://docs.docker.com/compose): `5.1.3`
 - [Git](https://git-scm.com): `2.39.5`
 - [GnuPG](https://gnupg.org): `2.2.40`
 - [jq](https://jqlang.github.io/jq): `1.6`
 - [kcov](https://github.com/SimonKagstrom/kcov): `43`
 - [lsof](https://github.com/lsof-org/lsof): `4.95.0`
 - [Lynx](https://lynx.invisible-island.net): `2.9.0`
-- [Node.js](https://nodejs.org): `24.14.1`
-- [npm](https://www.npmjs.com): `11.11.0`
-- [npx](https://www.npmjs.com/package/npx): `11.11.0`
+- [Node.js](https://nodejs.org): `24.15.0`
+- [npm](https://www.npmjs.com): `11.12.1`
+- [npx](https://www.npmjs.com/package/npx): `11.12.1`
 - [PHP](https://www.php.net): `8.4.20`
 - [rsync](https://rsync.samba.org): `3.2.7`
 - [ShellCheck](https://www.shellcheck.net): `0.11.0`
@@ -152,6 +152,8 @@ a `canary` version.
 
 ---
 _This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
+
+
 
 
 
