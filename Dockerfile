@@ -1,4 +1,4 @@
-FROM php:8.4-cli-bookworm@sha256:c95dacbc0353d266266b366afdcc69b4ae309cbd6fb4a36d600ddb7a190e1f33 AS builder
+FROM php:8.4-cli-bookworm@sha256:67bad6a515d1c282ab6012cfb63804dc2359b5051b8ff13652e7881140d02f62 AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq && \
@@ -31,7 +31,7 @@ RUN version=43 && \
     cmake --build . && \
     cmake --build . --target install
 
-FROM php:8.4-cli-bookworm@sha256:c95dacbc0353d266266b366afdcc69b4ae309cbd6fb4a36d600ddb7a190e1f33
+FROM php:8.4-cli-bookworm@sha256:67bad6a515d1c282ab6012cfb63804dc2359b5051b8ff13652e7881140d02f62
 
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
       org.opencontainers.image.description="CI runner with PHP, Node.js, Docker, and development tools" \
