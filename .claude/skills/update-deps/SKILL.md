@@ -20,7 +20,7 @@ Scan `Dockerfile`, resolve each renovate-annotated dependency's latest upstream 
 
 Read `Dockerfile`. Find every block matching the Renovate custom-manager regex from `renovate.json`:
 
-```
+```regex
 #\s*renovate:\s*datasource=(?<datasource>\S+)\s+depName=(?<depName>\S+)(?:\s+versioning=(?<versioning>\S+))?(?:\s+extractVersion=(?<extractVersion>\S+))?\s*\n(?:.*\n)*?.*?(?:ENV|ARG|RUN)\s+.*?version=(?<currentValue>[^\s&]+)
 ```
 
@@ -64,7 +64,7 @@ If any single resolver fails, record the dep as `error` and continue. Do not abo
 
 Render a markdown table so the user sees exactly what will change:
 
-```
+```markdown
 | Dependency      | Datasource      | Current   | Latest    | Status     |
 |-----------------|-----------------|-----------|-----------|------------|
 | kcov            | github-releases | 43        | 43        | up-to-date |
