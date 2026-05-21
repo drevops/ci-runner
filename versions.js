@@ -50,6 +50,7 @@ function updateReadme(readmePath, sectionTitle, newContent) {
   for (const line of lines) {
     if (line === sectionTitle) {
       result.push(newContent.trimEnd());
+      result.push('');
       shouldSkip = true;
       continue;
     }
@@ -63,7 +64,7 @@ function updateReadme(readmePath, sectionTitle, newContent) {
     }
   }
 
-  const newReadme = result.join('\n') + "\n\n";
+  const newReadme = result.join('\n').replace(/\n*$/, '\n');
 
   if (readme === newReadme) {
     return false;
