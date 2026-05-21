@@ -53,23 +53,24 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [Vim](https://www.vim.org): `9.0`
 - [Yarn](https://yarnpkg.com): `1.22.22`
 - [Zip](http://www.info-zip.org/Zip.html): `3.0`
+
 ## Usage
 
 Make sure to **always** pin the version of this image to the tag:
 
-```
-drevops/ci-runner:25.1.0
+```text
+drevops/ci-runner:25.8.0
 ```
 
 For testing purposes, you can use the `canary` tag:
 
-```
+```text
 drevops/ci-runner:canary
 ```
 
 When using in GitHub Actions, make sure to add a fix for the overwritten `$HOME`:
 
-```
+```yaml
 name: Test
 
 jobs:
@@ -89,7 +90,7 @@ jobs:
 
 ## Testing
 
-The image includes [Goss](https://github.com/aelsabbahy/goss) for environment testing. To run tests locally using dgoss:
+This project uses [Goss](https://github.com/aelsabbahy/goss) (via `dgoss`) to test the image environment from the host. The image itself does not bundle Goss. To run the tests locally:
 
 ```bash
 # Build the image
@@ -128,11 +129,11 @@ export GOSS_PATH=~/bin/goss-linux-amd64
 
 This project uses _Year-Month-Patch_ versioning:
 
-- `YY`: Last two digits of the year, e.g., `23` for 2023.
+- `YY`: Last two digits of the year, e.g., `25` for 2025.
 - `m`: Numeric month, e.g., April is `4`.
 - `patch`: Patch number for the month, starting at `0`.
 
-Example: `23.4.2` indicates the third patch in April 2023.
+Example: `25.4.2` indicates the third patch in April 2025.
 
 ### Releasing
 
@@ -152,137 +153,3 @@ a `canary` version.
 
 ---
 _This repository was created using the [Scaffold](https://getscaffold.dev/) project template_
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
