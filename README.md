@@ -28,7 +28,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 
 - [aspell](http://aspell.net): `3.1.20`
 - [Bats](https://github.com/bats-core/bats-core): `1.13.0`
-- [Composer](https://getcomposer.org): `2.9.8`
+- [Composer](https://getcomposer.org): `2.10.0`
 - [Codecov](https://codecov.io): `0.8.0`
 - [curl](https://curl.se): `7.88.1`
 - [Docker](https://www.docker.com): `29.5.2`
