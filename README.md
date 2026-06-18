@@ -32,7 +32,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [Codecov](https://codecov.io): `0.8.0`
 - [curl](https://curl.se): `7.88.1`
 - [Docker](https://www.docker.com): `29.5.2`
-- [Docker Buildx](https://github.com/docker/buildx): `0.34.1`
+- [Docker Buildx](https://github.com/docker/buildx): `0.35.0`
 - [Docker Compose](https://docs.docker.com/compose): `5.1.4`
 - [Git](https://git-scm.com): `2.39.5`
 - [GnuPG](https://gnupg.org): `2.2.40`
