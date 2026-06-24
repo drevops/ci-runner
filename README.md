@@ -40,9 +40,9 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [kcov](https://github.com/SimonKagstrom/kcov): `43`
 - [lsof](https://github.com/lsof-org/lsof): `4.95.0`
 - [Lynx](https://lynx.invisible-island.net): `2.9.0`
-- [Node.js](https://nodejs.org): `24.17.0`
-- [npm](https://www.npmjs.com): `11.13.0`
-- [npx](https://www.npmjs.com/package/npx): `11.13.0`
+- [Node.js](https://nodejs.org): `24.18.0`
+- [npm](https://www.npmjs.com): `11.16.0`
+- [npx](https://www.npmjs.com/package/npx): `11.16.0`
 - [PHP](https://www.php.net): `8.4.22`
 - [rsync](https://rsync.samba.org): `3.2.7`
 - [ShellCheck](https://www.shellcheck.net): `0.11.0`
