@@ -43,7 +43,14 @@ jobs:
         run: docker images
 
       - name: Install goss
-        run: curl -fsSL https://goss.rocks/install | sh && goss --version
+        env:
+          GOSS_VERSION: v0.4.9
+        run: |
+          curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/goss-linux-amd64" -o /usr/local/bin/goss \
+          && chmod +rx /usr/local/bin/goss \
+          && curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/dgoss" -o /usr/local/bin/dgoss \
+          && chmod +rx /usr/local/bin/dgoss \
+          && goss --version
 
       - name: Test image
         run: dgoss run -i drevops/ci-runner:test-ci
