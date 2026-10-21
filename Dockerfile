@@ -1,4 +1,4 @@
-FROM php:8.4-cli-bookworm@sha256:836ac6c672d1372a47c8fd61b625015bd07760f493fb2eaab2087636498a2b4b AS builder
+FROM php:8.4-cli-bookworm@sha256:58a95e5fe74d1d9f41c5f48ff1ebf10199c77bbe00a07d9236917154717e228c AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq && \
@@ -31,7 +31,7 @@ RUN version=43 && \
     cmake --build . && \
     cmake --build . --target install
 
-FROM php:8.4-cli-bookworm@sha256:836ac6c672d1372a47c8fd61b625015bd07760f493fb2eaab2087636498a2b4b
+FROM php:8.4-cli-bookworm@sha256:58a95e5fe74d1d9f41c5f48ff1ebf10199c77bbe00a07d9236917154717e228c
 
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
       org.opencontainers.image.description="CI runner with PHP, Node.js, Docker, and development tools" \
@@ -142,7 +142,7 @@ RUN version=29.5.2 && \
 # Install Docker Compose V5 (docker compose).
 # @see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^(?<version>.*)$
-RUN version=5.6.0 && \
+RUN version=5.6.1 && \
     mkdir -p "/usr/local/lib/docker/cli-plugins" && \
     curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "/usr/local/lib/docker/cli-plugins/docker-compose" && \
     chmod +x "/usr/local/lib/docker/cli-plugins/docker-compose" && \
