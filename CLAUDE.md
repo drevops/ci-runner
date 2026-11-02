@@ -11,7 +11,7 @@ This is a Docker image project for a CI runner based on Debian `php:8.4-cli-book
 ### Docker Image Structure
 - **Multi-stage build**: Uses a `builder` stage to compile kcov from source, then copies binaries to the final image
 - **Base image**: `php:8.4-cli-bookworm`
-- **Architectures**: The Dockerfile builds on both `linux/amd64` and `linux/arm64` — binary download steps derive the architecture from `uname -m`; kcov and PCOV compile natively per platform
+- **Architectures**: The Dockerfile builds on both `linux/amd64` and `linux/arm64`. Binary download steps derive the architecture from `uname -m`, and kcov and PCOV compile natively per platform
 - **Plugin location**: Docker CLI plugins (compose, buildx) are installed in `/usr/local/lib/docker/cli-plugins/`
 - **Mock tools**: Some tools like `pygmy` and `sendmail` are symlinked to `/usr/bin/true` for framework compatibility
 
@@ -54,10 +54,7 @@ dgoss run -i drevops/ci-runner:test-ci
 
 #### ARM64/Apple Silicon systems:
 
-The image builds natively on arm64 — no emulation needed. The goss binary
-that runs INSIDE the container must match the image's architecture
-(`goss-linux-arm64` for a native arm64 build), while the `goss` on PATH
-matches the host.
+The image builds natively on arm64, so no emulation is needed. `GOSS_PATH` must point to the Linux arm64 goss binary that `dgoss` copies into the container. The `goss` on `PATH` matches the host.
 
 ```bash
 # Create bin directory
@@ -123,9 +120,7 @@ RUN version=1.2.3 && \
     tool --version
 ```
 
-When a tool ships per-architecture binaries, derive the architecture from
-`uname -m` (mapped to the tool's naming scheme, as above) instead of
-hardcoding one, so the image keeps building on both amd64 and arm64.
+When a tool ships per-architecture binaries, derive the architecture from `uname -m` and map it to the tool's naming scheme, as above. A hardcoded architecture breaks the build on the other platform.
 
 Example versions-config.json entry:
 ```json
@@ -143,9 +138,7 @@ Note: Regex is stored as a string and will be compiled with 'im' flags (case-ins
 
 ### Test Workflow (`.github/workflows/test.yml`)
 
-Runs on pull requests and pushes to main, as a matrix over amd64
-(`ubuntu-latest`) and arm64 (`ubuntu-24.04-arm`) runners — each leg builds
-the image natively for its architecture:
+Runs on pull requests and pushes to main as a matrix over amd64 (`ubuntu-latest`) and arm64 (`ubuntu-24.04-arm`) runners. Each leg builds the image natively for its architecture:
 1. Dockerfile linting with hadolint
 2. Image build
 3. Goss tests via dgoss
