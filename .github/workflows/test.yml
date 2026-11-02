@@ -10,7 +10,17 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: test (${{ matrix.platform }})
+    runs-on: ${{ matrix.runner }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: amd64
+            runner: ubuntu-latest
+          - platform: arm64
+            runner: ubuntu-24.04-arm
 
     env:
       GOSS_FILES_STRATEGY: cp
@@ -28,7 +38,7 @@ jobs:
 
       - name: Install Docker
         run: |
-          curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz" \
+          curl -L -o "/tmp/docker-${DOCKER_VERSION}.tgz" "https://download.docker.com/linux/static/stable/$(uname -m)/docker-${DOCKER_VERSION}.tgz" \
           && tar -xz -C /tmp -f "/tmp/docker-${DOCKER_VERSION}.tgz" \
           && sudo mv /tmp/docker/* /usr/bin \
           && docker --version
@@ -46,7 +56,7 @@ jobs:
         env:
           GOSS_VERSION: v0.4.9
         run: |
-          curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/goss-linux-amd64" -o /usr/local/bin/goss \
+          curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/goss-linux-${{ matrix.platform }}" -o /usr/local/bin/goss \
           && chmod +rx /usr/local/bin/goss \
           && curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/dgoss" -o /usr/local/bin/dgoss \
           && chmod +rx /usr/local/bin/dgoss \

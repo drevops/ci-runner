@@ -11,6 +11,7 @@ This is a Docker image project for a CI runner based on Debian `php:8.4-cli-book
 ### Docker Image Structure
 - **Multi-stage build**: Uses a `builder` stage to compile kcov from source, then copies binaries to the final image
 - **Base image**: `php:8.4-cli-bookworm`
+- **Architectures**: The Dockerfile builds on both `linux/amd64` and `linux/arm64` — binary download steps derive the architecture from `uname -m`; kcov and PCOV compile natively per platform
 - **Plugin location**: Docker CLI plugins (compose, buildx) are installed in `/usr/local/lib/docker/cli-plugins/`
 - **Mock tools**: Some tools like `pygmy` and `sendmail` are symlinked to `/usr/bin/true` for framework compatibility
 
@@ -52,6 +53,12 @@ dgoss run -i drevops/ci-runner:test-ci
 ```
 
 #### ARM64/Apple Silicon systems:
+
+The image builds natively on arm64 — no emulation needed. The goss binary
+that runs INSIDE the container must match the image's architecture
+(`goss-linux-arm64` for a native arm64 build), while the `goss` on PATH
+matches the host.
+
 ```bash
 # Create bin directory
 mkdir -p ~/bin
@@ -60,16 +67,16 @@ mkdir -p ~/bin
 curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-darwin-arm64" -o ~/bin/goss
 chmod +x ~/bin/goss
 
-# Download Linux AMD64 goss binary for container testing
-curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-linux-amd64" -o ~/bin/goss-linux-amd64
-chmod +x ~/bin/goss-linux-amd64
+# Download Linux ARM64 goss binary for container testing
+curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-linux-arm64" -o ~/bin/goss-linux-arm64
+chmod +x ~/bin/goss-linux-arm64
 
 # Download dgoss wrapper
 curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/dgoss" -o ~/bin/dgoss
 chmod +x ~/bin/dgoss
 
 # Run tests
-export GOSS_PATH=~/bin/goss-linux-amd64
+export GOSS_PATH=~/bin/goss-linux-arm64
 ~/bin/dgoss run -i drevops/ci-runner:test-ci
 ```
 
@@ -108,11 +115,17 @@ Example Dockerfile entry:
 # @see https://github.com/org/tool/releases
 # renovate: datasource=github-releases depName=org/tool extractVersion=^(?<version>.*)$
 RUN version=1.2.3 && \
-    curl -L -o "/tmp/tool-v${version}" "https://github.com/org/tool/releases/download/v${version}/tool_linux_amd64" && \
+    arch=$(uname -m) && \
+    if [ "${arch}" = "x86_64" ]; then arch="amd64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
+    curl -L -o "/tmp/tool-v${version}" "https://github.com/org/tool/releases/download/v${version}/tool_linux_${arch}" && \
     mv "/tmp/tool-v${version}" /usr/local/bin/tool && \
     chmod +x /usr/local/bin/tool && \
     tool --version
 ```
+
+When a tool ships per-architecture binaries, derive the architecture from
+`uname -m` (mapped to the tool's naming scheme, as above) instead of
+hardcoding one, so the image keeps building on both amd64 and arm64.
 
 Example versions-config.json entry:
 ```json
@@ -130,7 +143,9 @@ Note: Regex is stored as a string and will be compiled with 'im' flags (case-ins
 
 ### Test Workflow (`.github/workflows/test.yml`)
 
-Runs on pull requests and pushes to main:
+Runs on pull requests and pushes to main, as a matrix over amd64
+(`ubuntu-latest`) and arm64 (`ubuntu-24.04-arm`) runners — each leg builds
+the image natively for its architecture:
 1. Dockerfile linting with hadolint
 2. Image build
 3. Goss tests via dgoss
