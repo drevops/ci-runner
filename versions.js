@@ -20,7 +20,7 @@ function extractVersion(output, regex) {
 function getToolVersion(dockerImage, tool) {
   try {
     const output = execSync(
-      `docker run --rm --platform linux/amd64 "${dockerImage}" ${tool.cmd} 2>&1`,
+      `docker run --rm "${dockerImage}" ${tool.cmd} 2>&1`,
       { encoding: 'utf-8' }
     );
     return extractVersion(output, tool.versionRegex);
