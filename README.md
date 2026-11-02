@@ -1,6 +1,5 @@
 <p align="center">
-  <a href="" rel="noopener">
-  <img width=200px height=200px src="https://placehold.jp/000000/ffffff/200x200.png?text=CI+runner&css=%7B%22border-radius%22%3A%22%20100px%22%7D" alt="CI runner"></a>
+  <img width="400" src="logo.png" alt="ci-runner">
 </p>
 
 <h1 align="center">Docker image for CI runner</h1>
