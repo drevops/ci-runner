@@ -100,26 +100,26 @@ docker build -t drevops/ci-runner:test-ci .
 dgoss run -i drevops/ci-runner:test-ci
 ```
 
-**Note for ARM64 systems (Apple Silicon):** You'll need to install the correct goss binaries:
+**Note for ARM64 systems (Apple Silicon):** The image builds natively on arm64, so `dgoss` needs the Linux arm64 goss binary inside the container. Install these goss binaries:
 
 ```bash
 # Create bin directory
 mkdir -p ~/bin
 
 # Download macOS ARM64 goss binary for local use
-curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-darwin-arm64" -o ~/bin/goss
+curl -L "https://github.com/goss-org/goss/releases/download/v0.4.9/goss-darwin-arm64" -o ~/bin/goss
 chmod +x ~/bin/goss
 
-# Download Linux AMD64 goss binary for container testing
-curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-linux-amd64" -o ~/bin/goss-linux-amd64
-chmod +x ~/bin/goss-linux-amd64
+# Download Linux ARM64 goss binary for container testing
+curl -L "https://github.com/goss-org/goss/releases/download/v0.4.9/goss-linux-arm64" -o ~/bin/goss-linux-arm64
+chmod +x ~/bin/goss-linux-arm64
 
 # Download dgoss wrapper
-curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/dgoss" -o ~/bin/dgoss
+curl -L "https://github.com/goss-org/goss/releases/download/v0.4.9/dgoss" -o ~/bin/dgoss
 chmod +x ~/bin/dgoss
 
 # Run tests with correct binary
-export GOSS_PATH=~/bin/goss-linux-amd64
+export GOSS_PATH=~/bin/goss-linux-arm64
 ~/bin/dgoss run -i drevops/ci-runner:test-ci
 ```
 
