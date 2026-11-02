@@ -55,8 +55,9 @@ jobs:
       - name: Install goss
         env:
           GOSS_VERSION: v0.4.9
+          GOSS_ARCH: ${{ matrix.platform }}
         run: |
-          curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/goss-linux-${{ matrix.platform }}" -o /usr/local/bin/goss \
+          curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/goss-linux-${GOSS_ARCH}" -o /usr/local/bin/goss \
           && chmod +rx /usr/local/bin/goss \
           && curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/dgoss" -o /usr/local/bin/dgoss \
           && chmod +rx /usr/local/bin/dgoss \
