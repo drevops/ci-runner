@@ -1,5 +1,8 @@
 <p align="center">
-  <img width="400" src="logo.png" alt="ci-runner">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="logo-dark.png">
+    <img width="400" src="logo.png" alt="ci-runner">
+  </picture>
 </p>
 
 <h1 align="center">Docker image for CI runner</h1>
