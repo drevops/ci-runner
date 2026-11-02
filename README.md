@@ -34,7 +34,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [Composer](https://getcomposer.org): `2.11.1`
 - [Codecov](https://codecov.io): `0.8.0`
 - [curl](https://curl.se): `7.88.1`
-- [Docker](https://www.docker.com): `29.5.2`
+- [Docker](https://www.docker.com): `29.9.2`
 - [Docker Buildx](https://github.com/docker/buildx): `0.38.1`
 - [Docker Compose](https://docs.docker.com/compose): `5.7.0`
 - [Git](https://git-scm.com): `2.39.5`
