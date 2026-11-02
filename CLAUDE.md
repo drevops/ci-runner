@@ -148,7 +148,7 @@ On pushes to main, the `push-canary-to-registry` job runs after both test jobs p
 
 ### Release Docker Workflow (`.github/workflows/release-docker.yml`)
 
-Runs on every pushed tag. It builds the image for `linux/amd64` and `linux/arm64` and pushes `drevops/ci-runner:<tag>` and `drevops/ci-runner:latest` to Docker Hub.
+Runs on every pushed `YY.m.patch` tag, one run at a time. It builds the image for `linux/amd64` and `linux/arm64` and pushes `drevops/ci-runner:<tag>` and `drevops/ci-runner:latest` to Docker Hub.
 
 ### Update README Workflow (`.github/workflows/update-readme.yml`)
 
