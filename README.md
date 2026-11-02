@@ -107,15 +107,15 @@ dgoss run -i drevops/ci-runner:test-ci
 mkdir -p ~/bin
 
 # Download macOS ARM64 goss binary for local use
-curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-darwin-arm64" -o ~/bin/goss
+curl -L "https://github.com/goss-org/goss/releases/download/v0.4.9/goss-darwin-arm64" -o ~/bin/goss
 chmod +x ~/bin/goss
 
 # Download Linux ARM64 goss binary for container testing
-curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/goss-linux-arm64" -o ~/bin/goss-linux-arm64
+curl -L "https://github.com/goss-org/goss/releases/download/v0.4.9/goss-linux-arm64" -o ~/bin/goss-linux-arm64
 chmod +x ~/bin/goss-linux-arm64
 
 # Download dgoss wrapper
-curl -L "https://github.com/aelsabbahy/goss/releases/latest/download/dgoss" -o ~/bin/dgoss
+curl -L "https://github.com/goss-org/goss/releases/download/v0.4.9/dgoss" -o ~/bin/dgoss
 chmod +x ~/bin/dgoss
 
 # Run tests with correct binary
