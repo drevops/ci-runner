@@ -16,6 +16,7 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/drevops/ci-runner?logo=docker)](https://hub.docker.com/r/drevops/ci-runner)
 ![amd64](https://img.shields.io/badge/arch-linux%2Famd64-brightgreen)
+![arm64](https://img.shields.io/badge/arch-linux%2Farm64-brightgreen)
 
 [![Vortex Ecosystem](https://img.shields.io/badge/%F0%9F%8C%80-Vortex%20Ecosystem-2C5A68?style=for-the-badge&labelColor=65ACBC)](https://github.com/drevops/vortex)
 </div>
@@ -139,11 +140,11 @@ Example: `25.4.2` indicates the third patch in April 2025.
 
 Releases are scheduled to occur at a minimum of once per month.
 
-This image is built by DockerHub via an automated build and tagged as follows:
+GitHub Actions builds the image for `linux/amd64` and `linux/arm64` and pushes it to Docker Hub with these tags:
 
- - `YY.m.patch` tag - when release tag is published on GitHub.
- - `latest` - when release tag is published on GitHub.
- - `canary` - on every push to `main` branch
+ - `YY.m.patch` tag - when a release tag is published on GitHub.
+ - `latest` - when a release tag is published on GitHub.
+ - `canary` - on every push to the `main` branch, after the tests pass.
 
 ### Dependencies update
 

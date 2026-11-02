@@ -144,6 +144,12 @@ Runs on pull requests and pushes to main as a matrix over amd64 (`ubuntu-latest`
 3. Goss tests via dgoss
 4. Display package versions via `versions.js`
 
+On pushes to main, the `push-canary-to-registry` job runs after both test jobs pass. It builds the image for `linux/amd64` and `linux/arm64` with QEMU and Buildx and pushes `drevops/ci-runner:canary` to Docker Hub using the `DOCKER_USER` and `DOCKER_PASS` secrets.
+
+### Release Docker Workflow (`.github/workflows/release-docker.yml`)
+
+Runs on every pushed tag. It builds the image for `linux/amd64` and `linux/arm64` and pushes `drevops/ci-runner:<tag>` and `drevops/ci-runner:latest` to Docker Hub.
+
 ### Update README Workflow (`.github/workflows/update-readme.yml`)
 
 Runs automatically after merges to main, or can be triggered manually:
@@ -182,10 +188,10 @@ steps:
 
 1. Releases occur monthly (minimum)
 2. Tag format: `YY.m.patch` (e.g., `25.4.0`)
-3. DockerHub builds automatically tag:
+3. GitHub Actions publishes multi-arch (`linux/amd64`, `linux/arm64`) images to Docker Hub:
    - `YY.m.patch` - on release tag
    - `latest` - on release tag
-   - `canary` - on every push to `main` branch
+   - `canary` - on every push to `main` branch, after the tests pass
 
 ## Dockerfile Formatting Rules
 
