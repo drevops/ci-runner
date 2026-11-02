@@ -10,17 +10,20 @@ on:
 
 jobs:
   test:
-    name: test (${{ matrix.platform }})
-    runs-on: ${{ matrix.runner }}
+    name: ${{ matrix.name }}
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: amd64
-            runner: ubuntu-latest
-          - platform: arm64
-            runner: ubuntu-24.04-arm
+          - name: Test, Arch amd64
+            arch: amd64
+            os: ubuntu-latest
+          - name: Test, Arch arm64
+            arch: arm64
+            os: ubuntu-24.04-arm
+
+    runs-on: ${{ matrix.os }}
 
     env:
       GOSS_FILES_STRATEGY: cp
@@ -55,7 +58,7 @@ jobs:
       - name: Install goss
         env:
           GOSS_VERSION: v0.4.9
-          GOSS_ARCH: ${{ matrix.platform }}
+          GOSS_ARCH: ${{ matrix.arch }}
         run: |
           curl -fsSL "https://github.com/goss-org/goss/releases/download/${GOSS_VERSION}/goss-linux-${GOSS_ARCH}" -o /usr/local/bin/goss \
           && chmod +rx /usr/local/bin/goss \
