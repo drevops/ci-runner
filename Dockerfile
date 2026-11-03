@@ -157,7 +157,7 @@ RUN version=5.7.0 && \
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 # renovate: datasource=github-releases depName=docker/buildx extractVersion=^(?<version>.*)$
-RUN version=0.38.1 && \
+RUN version=0.38.2 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="amd64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
     curl --silent -L "https://github.com/docker/buildx/releases/download/v${version}/buildx-v${version}.linux-${arch}" > /usr/local/lib/docker/cli-plugins/docker-buildx && \
