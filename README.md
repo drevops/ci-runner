@@ -47,7 +47,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [npm](https://www.npmjs.com): `11.20.0`
 - [npx](https://www.npmjs.com/package/npx): `11.20.0`
 - [PHP](https://www.php.net): `8.4.27`
-- [rsync](https://rsync.samba.org): `3.2.7`
+- [rsync](https://rsync.samba.org): `3.5.0`
 - [ShellCheck](https://www.shellcheck.net): `0.11.0`
 - [shfmt](https://github.com/mvdan/sh): `3.14.1`
 - [OpenSSH](https://www.openssh.com): `9.2`
