@@ -148,7 +148,7 @@ RUN version=29.9.2 && \
 # Install Docker Compose V5 (docker compose).
 # @see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose extractVersion=^(?<version>.*)$
-RUN version=5.7.0 && \
+RUN version=5.7.1 && \
     mkdir -p "/usr/local/lib/docker/cli-plugins" && \
     curl -sSL "https://github.com/docker/compose/releases/download/v${version}/docker-compose-$(uname -s)-$(uname -m)" -o "/usr/local/lib/docker/cli-plugins/docker-compose" && \
     chmod +x "/usr/local/lib/docker/cli-plugins/docker-compose" && \
@@ -157,7 +157,7 @@ RUN version=5.7.0 && \
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 # renovate: datasource=github-releases depName=docker/buildx extractVersion=^(?<version>.*)$
-RUN version=0.38.2 && \
+RUN version=0.39.0 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="amd64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
     curl --silent -L "https://github.com/docker/buildx/releases/download/v${version}/buildx-v${version}.linux-${arch}" > /usr/local/lib/docker/cli-plugins/docker-buildx && \
@@ -183,7 +183,7 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 # Install NodeJS.
 # @see https://nodejs.org/download/release/
 # renovate: datasource=node depName=node versioning=node extractVersion=^v(?<version>.*)$
-RUN version=26.13.0 && \
+RUN version=26.13.1 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="x64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
     curl -L -o "/tmp/node-${version}-linux-${arch}.tar.xz" "https://nodejs.org/download/release/v${version}/node-v${version}-linux-${arch}.tar.xz" && \
