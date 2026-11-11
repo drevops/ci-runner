@@ -35,15 +35,15 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [Codecov](https://codecov.io): `0.8.0`
 - [curl](https://curl.se): `7.88.1`
 - [Docker](https://www.docker.com): `29.9.2`
-- [Docker Buildx](https://github.com/docker/buildx): `0.38.2`
-- [Docker Compose](https://docs.docker.com/compose): `5.7.0`
+- [Docker Buildx](https://github.com/docker/buildx): `0.39.0`
+- [Docker Compose](https://docs.docker.com/compose): `5.7.1`
 - [Git](https://git-scm.com): `2.39.5`
 - [GnuPG](https://gnupg.org): `2.2.40`
 - [jq](https://jqlang.github.io/jq): `1.6`
 - [kcov](https://github.com/SimonKagstrom/kcov): `43`
 - [lsof](https://github.com/lsof-org/lsof): `4.95.0`
 - [Lynx](https://lynx.invisible-island.net): `2.9.0`
-- [Node.js](https://nodejs.org): `26.13.0`
+- [Node.js](https://nodejs.org): `26.13.1`
 - [npm](https://www.npmjs.com): `11.20.0`
 - [npx](https://www.npmjs.com/package/npx): `11.20.0`
 - [PHP](https://www.php.net): `8.4.27`
