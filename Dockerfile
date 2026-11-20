@@ -1,4 +1,4 @@
-FROM php:8.4-cli-bookworm@sha256:b3e907a1108629c562c4bb313ce3449e34d49991f6bb2487913f6146f47200fe AS builder
+FROM php:8.4-cli-bookworm@sha256:85da896b3eeb8bcd83fe612e51a529b7d5983a1fab92ef5f63c7ac6e2842fc46 AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq && \
@@ -31,7 +31,7 @@ RUN version=43 && \
     cmake --build . && \
     cmake --build . --target install
 
-FROM php:8.4-cli-bookworm@sha256:b3e907a1108629c562c4bb313ce3449e34d49991f6bb2487913f6146f47200fe
+FROM php:8.4-cli-bookworm@sha256:85da896b3eeb8bcd83fe612e51a529b7d5983a1fab92ef5f63c7ac6e2842fc46
 
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
       org.opencontainers.image.description="CI runner with PHP, Node.js, Docker, and development tools" \
@@ -157,7 +157,7 @@ RUN version=5.8.0 && \
 # Install Docker buildx (docker buildx).
 # @see https://github.com/docker/buildx/releases
 # renovate: datasource=github-releases depName=docker/buildx extractVersion=^(?<version>.*)$
-RUN version=0.39.0 && \
+RUN version=0.39.1 && \
     arch=$(uname -m) && \
     if [ "${arch}" = "x86_64" ]; then arch="amd64"; elif [ "${arch}" = "aarch64" ]; then arch="arm64"; fi && \
     curl --silent -L "https://github.com/docker/buildx/releases/download/v${version}/buildx-v${version}.linux-${arch}" > /usr/local/lib/docker/cli-plugins/docker-buildx && \
