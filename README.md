@@ -35,7 +35,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [Codecov](https://codecov.io): `0.8.0`
 - [curl](https://curl.se): `7.88.1`
 - [Docker](https://www.docker.com): `29.9.2`
-- [Docker Buildx](https://github.com/docker/buildx): `0.39.0`
+- [Docker Buildx](https://github.com/docker/buildx): `0.39.1`
 - [Docker Compose](https://docs.docker.com/compose): `5.8.0`
 - [Git](https://git-scm.com): `2.39.5`
 - [GnuPG](https://gnupg.org): `2.2.40`
@@ -46,7 +46,7 @@ Based on Debian `php:8.4-cli-bookworm`.
 - [Node.js](https://nodejs.org): `26.13.1`
 - [npm](https://www.npmjs.com): `11.20.0`
 - [npx](https://www.npmjs.com/package/npx): `11.20.0`
-- [PHP](https://www.php.net): `8.4.27`
+- [PHP](https://www.php.net): `8.4.28`
 - [rsync](https://rsync.samba.org): `3.5.0`
 - [ShellCheck](https://www.shellcheck.net): `0.11.0`
 - [shfmt](https://github.com/mvdan/sh): `3.14.1`
