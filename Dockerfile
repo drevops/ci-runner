@@ -1,4 +1,4 @@
-FROM php:8.4-cli-bookworm@sha256:21388b31762609b18975cf8fd3f6129ab6c84959f5bbd529a398afb10ae1a902 AS builder
+FROM php:8.4-cli-bookworm@sha256:93a0fed307238c5645ccff9d4b87625bd5b96fdfa987e243dab531fd6140bac8 AS builder
 
 # hadolint ignore=DL3008
 RUN apt-get update -qq && \
@@ -31,7 +31,7 @@ RUN version=43 && \
     cmake --build . && \
     cmake --build . --target install
 
-FROM php:8.4-cli-bookworm@sha256:21388b31762609b18975cf8fd3f6129ab6c84959f5bbd529a398afb10ae1a902
+FROM php:8.4-cli-bookworm@sha256:93a0fed307238c5645ccff9d4b87625bd5b96fdfa987e243dab531fd6140bac8
 
 LABEL org.opencontainers.image.authors="Alex Skrypnyk <alex@drevops.com>" \
       org.opencontainers.image.description="CI runner with PHP, Node.js, Docker, and development tools" \
@@ -169,7 +169,7 @@ RUN version=0.39.1 && \
 # renovate: datasource=github-releases depName=composer/composer extractVersion=^(?<version>.*)$
 ENV COMPOSER_ALLOW_SUPERUSER=1
 # hadolint ignore=DL4006
-RUN version=2.11.2 && \
+RUN version=2.11.3 && \
     curl -sS https://getcomposer.org/download/${version}/composer.phar.sha256sum | awk '{ print $1, "composer.phar" }' > composer.phar.sha256sum && \
     curl -sS -o composer.phar https://getcomposer.org/download/${version}/composer.phar && \
     sha256sum -c composer.phar.sha256sum && \
